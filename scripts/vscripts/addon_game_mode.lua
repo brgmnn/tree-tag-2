@@ -345,8 +345,6 @@ notswapped9a = true
 function CTreeTagGameMode:OnEntityKilled( event )
     local killedUnit = EntIndexToHScript( event.entindex_killed )
 
-    print("an entity was killed")
-
     if killedUnit and killedUnit:IsRealHero() then
         local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
         newItem:SetPurchaseTime( 0 )
