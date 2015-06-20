@@ -1,0 +1,3568 @@
+"DOTAAbilities"
+{
+
+	"item_apply_modifiers"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "ID"                            "1224"  // unique ID number for this item.  Do not change this once 
+	    "BaseClass"                     "item_datadriven"
+	    "ItemBaseLevel"                 "1"
+
+	    // Stats
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"              "9999"
+	    "AbilityCastPoint"                      "0.0"    
+
+	    "Modifiers"
+	    {
+            "beamtarget"
+            {
+                "IsDebuff" "0"
+                "IsPurgable" "0"
+                "IsHidden" "0"
+                "ThinkInterval" "0.2"
+
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target" "TARGET"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"    "attach_hitloc"
+                            "TARGET"        "attach_hitloc"
+                        }
+                        "EffectName"        "particles/units/heroes/hero_razor/razor_static_link_beam.vpcf"
+                        //"EffectName"      "particles/units/heroes/hero_lion/lion_spell_mana_drain.vpcf"
+                        //"EffectName"        "particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
+                        "EffectAttachType"  "start_at_customorigin"
+                    }
+                }
+            }
+
+	        "bigtreespirit"
+	        {
+	            "Duration" "120"
+	            "IsDebuff" "0"
+	            "IsPurgable" "0"    
+	            "IsHidden" "0"
+	            "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+	            "OnCreated"
+	            {
+	                "AttachEffect"
+	                {
+	                    "Target" "CASTER"
+	                    "EffectName" "particles/units/heroes/hero_enchantress/enchantress_natures_attendants_heal_wispa.vpcf"
+	                    "EffectAttachType" "follow_overhead"
+	                    "EffectLifeDurationScale" "1"
+	                    "EffectColorA" "255 255 0"
+	                }
+	                "AttachEffect"
+	                {
+	                    "Target" "CASTER"
+	                    "EffectName" "particles/units/heroes/hero_enchantress/enchantress_natures_attendants_heal_wispb.vpcf"
+	                    "EffectAttachType" "follow_overhead"
+	                    "EffectLifeDurationScale" "1"
+	                    "EffectColorA" "255 255 0"
+	                }
+	            }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"           "60"
+                }
+	        }
+
+            "holding_log"
+            {
+                "Duration" "240"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "0"        
+                "ThinkInterval" "1.0"
+                "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                        "Function"          "logthink"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "-3"
+                }
+            }
+
+            "holding_spirit"
+            {
+                "Duration" "90"
+                "IsDebuff" "0"
+                "IsPurgable" "0"
+                "IsHidden" "0"
+                "ThinkInterval" "1.5"
+                "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target" "CASTER"
+                        "EffectName" "particles/units/heroes/hero_enchantress/enchantress_natures_attendants_heal_wispa.vpcf"
+                        "EffectAttachType" "follow_overhead"
+                        "EffectLifeDurationScale" "1"
+                        "EffectColorA" "255 255 0"
+                    }
+                }
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                        "Function"          "spiritthink"
+                        "Buff"              "holding_spirit"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "40"
+                }
+            }
+            "ancientdone"
+            {
+                "IsDebuff" "0"
+                "IsPurgable" "0"
+                "Passive" "0"
+                "States"
+                {
+                    "MODIFIER_STATE_INVULNERABLE"                   "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_MAGIC_IMMUNE"                   "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"              "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"                   "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"                 "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"     "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+
+
+            "trampled"
+            {
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Duration"  "1"
+                "OverrideAnimation"     "ACT_DOTA_DISABLED"
+                "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "megatree"
+            {
+                "IsDebuff"      "0"
+                "IsHidden"      "0"
+                "IsPurgable"    "0"
+
+				"ThinkInterval"  "0.8"
+			    "OnIntervalThink"
+			    {
+					"ApplyModifier"
+					{
+						"ModifierName" "trampled"
+						"Target"
+						{
+							"Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"  "DOTA_UNIT_TARGET_ALL"
+							"Center" "CASTER"
+							"Radius" "400"
+						}
+					}
+					"Damage"
+					{
+						"Damage"	"10000"
+						"Type"		"DAMAGE_TYPE_PURE"
+						"Target"
+						{
+							"Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"  "DOTA_UNIT_TARGET_HERO"
+							"Center" "CASTER"
+							"Radius" "250"
+						}
+					}
+					"DestroyTrees"
+		            {
+		   				"Target"
+		   				{
+			   				"Center"	"CASTER"
+							"Radius"	"160"
+		   				}
+						"Radius"	"160"
+		   			}  
+				}
+
+                "States"
+                {
+                    "MODIFIER_STATE_FLYING"                             "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"                       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION"                "2000"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"                "2000"
+                    "MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE"             "522"
+                }
+            }
+	    }
+
+	}
+	"item_apply_stack_debuffs"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "ID"                            "1225"  // unique ID number for this item.  Do not change this once 
+	    "BaseClass"                     "item_datadriven"
+	    "ItemBaseLevel"                 "1"
+	    "AbilityTextureName"            "item_nopda"
+
+	    // Stats
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"              "9999"
+	    "AbilityCastPoint"                      "0.0"    
+
+	    "Modifiers"
+	    {
+            "slowmine"
+            {
+                "Duration" "1.5"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "0"
+
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target" "CASTER"
+                        "EffectName" "particles/units/heroes/hero_axe/axe_battle_hunger_b.vpcf"
+                        "EffectAttachType" "follow_overhead"
+                        "EffectLifeDurationScale" "1"
+                        "EffectColorA" "255 255 0"
+                    }
+                }
+            }
+
+	        "reduceddamage"
+	        {
+	            "Duration" "1.5"
+	            "IsDebuff" "0"
+	            "IsPurgable" "0"    
+	            "IsHidden" "0"
+
+	            "OnCreated"
+	            {
+	                "AttachEffect"
+	                {
+	                    "Target" "CASTER"
+	                    "EffectName" "particles/units/heroes/hero_axe/axe_battle_hunger_b.vpcf"
+	                    "EffectAttachType" "follow_overhead"
+	                    "EffectLifeDurationScale" "1"
+	                    "EffectColorA" "255 255 0"
+	                }
+	            }
+
+                "Properties"
+                {
+    				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "-80"
+                }
+	        }
+
+	        "reducedarmor"
+	        {
+	            "Duration" "1.5"
+	            "IsDebuff" "0"
+	            "IsPurgable" "0"    
+	            "IsHidden" "0"
+	            //"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+	            "OnCreated"
+	            {
+	                "AttachEffect"
+	                {
+	                    "Target" "CASTER"
+	                    "EffectName" "particles/units/heroes/hero_axe/axe_battle_hunger_b.vpcf"
+	                    "EffectAttachType" "follow_overhead"
+	                    "EffectLifeDurationScale" "1"
+	                    "EffectColorA" "255 255 0"
+	                }
+	            }
+
+                "Properties"
+                {
+    				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"      "-4"
+                }
+	        }
+	    }
+
+	}
+
+    "item_apply_logs"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1226"  // unique ID number for this item.  Do not change this once 
+        "BaseClass"                     "item_datadriven"
+        "ItemBaseLevel"                 "1"
+        "AbilityTextureName"            "item_logs"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "9999"
+        "AbilityCastPoint"                      "0.0"    
+
+        "Modifiers"
+        {
+            "holding_log"
+            {
+                "Duration" "240"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "0"        
+                "ThinkInterval" "1.0"
+                "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                        "Function"          "logthink"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "-3"
+                }
+            }
+        }
+    }
+
+    "item_chop_tree"
+    {
+        "ID"                            "1227"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        "AbilityTextureName"            "item_midastree"
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+        "ItemKillable"                  "0"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+
+        "ItemPurchasable"               "1"
+        
+        "ItemQuality"                   "epic"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        
+        "MaxLevel"                      "1"
+
+        "AbilityGoldCost"               "0"
+
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+    "item_place_mine"
+    {
+        "ID"                            "1000"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE" 
+        "AbilityTextureName"            "item_tt_mine"
+        //"AbilityTextureName"          "earthshaker_fissure"
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+        "ItemKillable"                  "0"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+
+        "ItemPurchasable"               "1"
+        
+        "ItemQuality"                   "epic"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        
+        "AbilityCastRange"              "200"
+        "AbilityCastPoint"              "0"
+        "MaxLevel"                      "1"
+        "AbilityGoldCost"               "0"
+
+        "AOERadius" "65"
+
+
+        "AbilityChannelTime"            "1.5"
+        "AbilityCooldown"               "1"
+
+
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "placeGhost"
+                "Target"            "POINT"
+                "unitname"          "npc_treetag_building_mine_1"
+                "unitscale"         "0.32"
+                "AbilityGoldCost" "0"
+            }
+        }
+
+        "OnChannelSucceeded"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "placeBuilding"
+                "Target"            "POINT"
+                "AbilityGoldCost" "0"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+        }
+
+        "OnChannelInterrupted"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "refundcost"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+        }
+
+    }
+
+    "item_place_wall"
+	{
+	    "ID"                            "1001"
+	    "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED" 
+	    "AbilityTextureName"            "item_tt_wall"
+        //"AbilityTextureName"			"earthshaker_fissure"
+	    "ItemCost"                      "0"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "1"
+
+		"ItemPurchasable"				"1"
+		
+		"ItemQuality"					"epic"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		
+
+
+
+        "AbilityChannelTime"            "2.0"
+        "AbilityCooldown"               "2"
+
+        "AbilityCastRange" "250"
+        "AbilityCastPoint" "0.0"
+
+        "AbilityGoldCost"           "4"
+
+        "AOERadius" "65"
+
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "placeGhost"
+                "Target"            "POINT"
+                "unitname"			"npc_treetag_building_wall_1"
+                "unitscale"			"0.61"
+                "AbilityGoldCost" "4"
+            }
+        }
+
+        "OnChannelSucceeded"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "placeWall"
+                "Target" "POINT"
+                "AbilityGoldCost" "4"
+            }
+        }
+
+        "OnChannelInterrupted"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "refundcost"
+            }
+        }
+	}
+
+    "item_place_turret"
+	{
+	    "ID"                            "1002"
+	    "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE" 
+	    "AbilityTextureName"            "item_tt_turret"
+	    "ItemCost"                      "0"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "1"
+
+		"ItemPurchasable"				"1"
+		
+		"ItemQuality"					"epic"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		
+
+        "AbilityCastRange" 				"200"
+        "AbilityCastPoint"				"0.0"
+        "AbilityChannelTime"            "1.5"
+        "AbilityCooldown"               "1"
+
+        "MaxLevel"                  	"1"
+        "AbilityGoldCost"           	"8"
+
+        "AOERadius" "65"
+
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+        }
+
+        "OnChannelSucceeded"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "placeTurret"
+                "Target" "POINT"
+                "AbilityGoldCost" "8"
+            }
+        }
+
+        "OnChannelInterrupted"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "refundcost"
+            }
+        }
+
+	}
+
+    "item_place_well"
+	{
+	    "ID"                            "1003"
+	    "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE" 
+	    "AbilityTextureName"            "item_tt_well"
+	    "ItemCost"                      "0"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "1"
+
+		"ItemPurchasable"				"1"
+		
+		"ItemQuality"					"epic"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		
+
+        "AbilityCastRange" 				"200"
+        "AbilityCastPoint"				"0.0"
+        "AbilityChannelTime"            "1.5"
+        "AbilityCooldown"               "1"
+
+        "MaxLevel"                  	"1"
+        "AbilityGoldCost"           	"64"
+
+        "AOERadius" "65"
+
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "placeGhost"
+                "Target"            "POINT"
+                "unitname"			"npc_treetag_building_well_1"
+                "unitscale"			"0.3"
+                "AbilityGoldCost" "64"
+            }
+        }
+
+        "OnChannelSucceeded"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "placewell"
+                "Target" "POINT"
+                "AbilityGoldCost" "64"
+            }
+        }
+
+        "OnChannelInterrupted"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "removeGhost"
+                "Target"            "POINT"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "refundcost"
+            }
+        }
+	}
+
+
+
+    
+
+
+	//===============================================
+	// blade1
+	//===============================================
+    "item_blades_1"
+	{
+	    "ID"                            "1154"
+	    "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "100"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "1"
+
+		"ItemPurchasable"				"1"
+		
+		"ItemQuality"					"epic"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+        
+
+
+        "Modifiers"
+        {
+            "item_blades_1_damage"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "2"
+                }
+            }
+        }
+	}
+
+
+	// blade2 rec ==================================================================
+	"item_recipe_blades_2"
+	{
+	    "ID"                            "1155"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_2"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_1;item_blades_1"
+		}
+	}
+	// blade2 ==================================================================
+    "item_blades_2"
+	{
+	    "ID"                            "1156"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+
+        "Modifiers"
+        {
+            "item_blades_2_damage"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "4"
+                }
+            }
+        }
+	}
+
+
+	// blade3 rec ==================================================================
+	"item_recipe_blades_3"
+	{
+	    "ID"                            "1157"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_3"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_2"
+		}
+	}
+	// blade3 ==================================================================
+    "item_blades_3"
+	{
+	    "ID"                            "1158"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_3_damage"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "8"
+                }
+            }
+        }
+	}
+
+	// blade4 rec ==================================================================
+	"item_recipe_blades_4"
+	{
+	    "ID"                            "1160"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_4"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_3"
+		}
+	}
+	// blade4 ==================================================================
+    "item_blades_4"
+	{
+	    "ID"                            "1161"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_4_damage"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "16"
+                }
+            }
+        }
+	}
+
+	// blade5 rec ==================================================================
+	"item_recipe_blades_5"
+	{
+	    "ID"                            "1162"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_5"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_4"
+		}
+	}
+	// blade5 ==================================================================
+    "item_blades_5"
+	{
+	    "ID"                            "1163"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "1600"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_5_damage"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "32"
+                }
+            }
+        }
+	}
+
+
+	// blade6 rec ==================================================================
+	"item_recipe_blades_6"
+	{
+	    "ID"                            "1164"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_6"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_5"
+		}
+	}
+	// blade6 ==================================================================
+    "item_blades_6"
+	{
+	    "ID"                            "1165"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "3200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_6_damage"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "64"
+                }
+            }
+        }
+	}
+
+
+	// blade7 rec ==================================================================
+	"item_recipe_blades_7"
+	{
+	    "ID"                            "1166"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_7"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_6"
+		}
+	}
+	// blade7 ==================================================================
+    "item_blades_7"
+	{
+	    "ID"                            "1167"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "6400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_7_damage"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "128"
+                }
+            }
+        }
+	}
+
+
+
+	// blade8 rec ==================================================================
+	"item_recipe_blades_8"
+	{
+	    "ID"                            "1168"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_8"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_7"
+		}
+	}
+	// blade8 ==================================================================
+    "item_blades_8"
+	{
+	    "ID"                            "1169"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "12800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_8_damage"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "256"
+                }
+            }
+        }
+	}
+
+
+
+	// blade9 rec ==================================================================
+	"item_recipe_blades_9"
+	{
+	    "ID"                            "1170"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"12800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_9"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_8"
+		}
+	}
+	// blade9 ==================================================================
+    "item_blades_9"
+	{
+	    "ID"                            "1171"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "25600"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_9_damage"
+            {
+                "Passive" "1"
+                //"IsDebuff" "0"
+                //"IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "512"
+                }
+
+            }
+        }
+	}
+
+
+
+	// blade10 rec ==================================================================
+	"item_recipe_blades_10"
+	{
+	    "ID"                            "1172"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"25600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_10"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_9"
+		}
+	}
+	// blade10 ==================================================================
+    "item_blades_10"
+	{
+	    "ID"                            "1173"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "51200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_10_damage"
+            {
+                "Passive" "1"
+                //"IsDebuff" "0"
+                //"IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "1024"
+                }
+
+            }
+        }
+	}
+
+
+
+	// blade11 rec ==================================================================
+	"item_recipe_blades_11"
+	{
+	    "ID"                            "1174"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"51200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_11"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_10"
+		}
+	}
+	// blade11 ==================================================================
+    "item_blades_11"
+	{
+	    "ID"                            "1175"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "102400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_11_damage"
+            {
+                "Passive" "1"
+                //"IsDebuff" "0"
+                //"IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "2048"
+                }
+
+            }
+        }
+	}
+
+
+
+	// blade12 rec ==================================================================
+	"item_recipe_blades_12"
+	{
+	    "ID"                            "1176"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"99999"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blades_12"
+		"ItemRequirements"
+		{
+			"01"						"item_blades_11"
+		}
+	}
+	// blade12 ==================================================================
+    "item_blades_12"
+	{
+	    "ID"                            "1177"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityTextureName"            "item_midastree"
+	    "ItemCost"                      "204800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        
+
+
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "360"
+
+        "AbilityCooldown"               "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                "Function"          "choptree"
+            }
+            "FireEffect"
+            {
+                "Target" "CASTER"
+
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+
+                "EffectName" "particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "EffectLifeDurationScale" "1"
+                "EffectColorA" "255 255 0"
+            }
+        }
+
+        
+        "Modifiers"
+        {
+            "item_blades_12_damage"
+            {
+                "Passive" "1"
+                //"IsDebuff" "0"
+                //"IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"         "2048"
+                }
+
+            }
+        }
+	}
+
+
+
+
+    //=================================================================================================================
+    // Holdout Tombstone
+    //=================================================================================================================
+    "item_tombstone"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityName"                   "item_tombstone"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
+        "PingOverrideText"              "DOTA_Chat_Tombstone_Pinged"
+        "precache"
+        {
+            "particle_folder" "particles/units/heroes/hero_morphling"
+        }
+
+        
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "100"
+        "AbilityCastPoint"              "0.0"
+        "AbilityChannelTime"            "8.0"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "99999"
+        "ItemPurchasable"               "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "1"
+        "ItemShareability"              "ITEM_FULLY_SHAREABLE"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemCastOnPickup"              "1"
+        "ItemKillable"                  "0"
+
+    }
+
+
+
+
+
+
+	//===============================================
+	//	gloves of haste
+	//===============================================
+    "item_haste_1"
+	{
+	    "ID"                            "1040"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_gloves"
+	    "ItemCost"                      "100"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "1"
+
+		"ItemPurchasable"				"1"
+		
+		"ItemQuality"					"epic"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		
+
+
+        "Modifiers"
+        {
+            "item_gloves_mod_1"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"         "20"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "4"
+                }
+            }
+        }
+	}
+
+
+
+	//==================================================================
+	"item_recipe_haste_2"
+	{
+	    "ID"                            "1041"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_haste_2"
+		"ItemRequirements"
+		{
+			"01"						"item_haste_1"
+		}
+	}
+	// blade2 ==================================================================
+    "item_haste_2"
+	{
+	    "ID"                            "1042"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_gloves"
+	    "ItemCost"                      "200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_gloves_mod_2"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"         "40"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "8"
+                }
+            }
+        }
+    }
+
+
+
+
+	//==================================================================
+	"item_recipe_haste_3"
+	{
+	    "ID"                            "1043"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_haste_3"
+		"ItemRequirements"
+		{
+			"01"						"item_haste_2"
+		}
+	}
+	// blade2 ==================================================================
+    "item_haste_3"
+	{
+	    "ID"                            "1044"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_gloves"
+	    "ItemCost"                      "400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_gloves_mod_3"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"         "80"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "14"
+                }
+            }
+        }
+    }
+
+
+
+
+	//==================================================================
+	"item_recipe_haste_4"
+	{
+	    "ID"                            "1045"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_haste_4"
+		"ItemRequirements"
+		{
+			"01"						"item_haste_3"
+		}
+	}
+	// blade2 ==================================================================
+    "item_haste_4"
+	{
+	    "ID"                            "1046"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_gloves"
+	    "ItemCost"                      "800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_gloves_mod_4"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"         "100"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "24"
+                }
+            }
+        }
+    }
+
+
+
+
+	//==================================================================
+	"item_recipe_haste_5"
+	{
+	    "ID"                            "1047"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_haste_5"
+		"ItemRequirements"
+		{
+			"01"						"item_haste_4"
+		}
+	}
+	// ==================================================================
+    "item_haste_5"
+	{
+	    "ID"                            "1048"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_gloves"
+	    "ItemCost"                      "1600"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_gloves_mod_5"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"         "150"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "32"
+                }
+            }
+        }
+    }
+
+
+
+
+	//==================================================================
+	"item_recipe_haste_6"
+	{
+	    "ID"                            "1049"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_haste_6"
+		"ItemRequirements"
+		{
+			"01"						"item_haste_5"
+		}
+	}
+	// ==================================================================
+    "item_haste_6"
+	{
+	    "ID"                            "1050"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_gloves"
+	    "ItemCost"                      "3200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_gloves_mod_6"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"         "200"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "64"
+                }
+            }
+        }
+    }
+
+
+
+
+	//==================================================================
+	"item_recipe_haste_7"
+	{
+	    "ID"                            "1051"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_haste_7"
+		"ItemRequirements"
+		{
+			"01"						"item_haste_6"
+		}
+	}
+	// ==================================================================
+    "item_haste_7"
+	{
+	    "ID"                            "1052"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_gloves"
+	    "ItemCost"                      "6400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_gloves_mod_7"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"         "300"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "128"
+                }
+            }
+        }
+    }
+
+
+
+
+	//==================================================================
+	"item_recipe_haste_8"
+	{
+	    "ID"                            "1053"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_haste_8"
+		"ItemRequirements"
+		{
+			"01"						"item_haste_7"
+		}
+	}
+	// ==================================================================
+    "item_haste_8"
+	{
+	    "ID"                            "1054"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_gloves"
+	    "ItemCost"                      "12800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_gloves_mod_8"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "0"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"         "400"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "256"
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+	//===============================================
+	//	health items
+	//===============================================
+    "item_health_1"
+	{
+	    "ID"                            "1060"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_vitality_booster"
+	    "ItemCost"                      "100"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "1"
+
+		"ItemPurchasable"				"1"
+		
+		"ItemQuality"					"epic"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		
+
+
+        "Modifiers"
+        {
+            "item_health_mod_1"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"         "250"
+                }
+            }
+        }
+	}
+
+
+
+	//==================================================================
+	"item_recipe_health_2"
+	{
+	    "ID"                            "1061"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_health_2"
+		"ItemRequirements"
+		{
+			"01"						"item_health_1"
+		}
+	}
+	// ==================================================================
+    "item_health_2"
+	{
+	    "ID"                            "1062"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_vitality_booster"
+	    "ItemCost"                      "200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_health_mod_2"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"         "500"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_health_3"
+	{
+	    "ID"                            "1063"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_health_3"
+		"ItemRequirements"
+		{
+			"01"						"item_health_2"
+		}
+	}
+	// ==================================================================
+    "item_health_3"
+	{
+	    "ID"                            "1064"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_vitality_booster"
+	    "ItemCost"                      "400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_health_mod_3"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"         "1000"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_health_4"
+	{
+	    "ID"                            "1065"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_health_4"
+		"ItemRequirements"
+		{
+			"01"						"item_health_3"
+		}
+	}
+	// ==================================================================
+    "item_health_4"
+	{
+	    "ID"                            "1066"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_vitality_booster"
+	    "ItemCost"                      "800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_health_mod_4"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"         "2000"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_health_5"
+	{
+	    "ID"                            "1067"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_health_5"
+		"ItemRequirements"
+		{
+			"01"						"item_health_4"
+		}
+	}
+	// ==================================================================
+    "item_health_5"
+	{
+	    "ID"                            "1068"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_vitality_booster"
+	    "ItemCost"                      "1600"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_health_mod_5"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"         "4000"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_health_6"
+	{
+	    "ID"                            "1069"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_health_6"
+		"ItemRequirements"
+		{
+			"01"						"item_health_5"
+		}
+	}
+	// ==================================================================
+    "item_health_6"
+	{
+	    "ID"                            "1070"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_vitality_booster"
+	    "ItemCost"                      "3200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_health_mod_6"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"         "8000"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_health_7"
+	{
+	    "ID"                            "1071"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_health_7"
+		"ItemRequirements"
+		{
+			"01"						"item_health_6"
+		}
+	}
+	// ==================================================================
+    "item_health_7"
+	{
+	    "ID"                            "1072"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_vitality_booster"
+	    "ItemCost"                      "6400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_health_mod_7"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"         "16000"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_health_8"
+	{
+	    "ID"                            "1073"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_health_8"
+		"ItemRequirements"
+		{
+			"01"						"item_health_7"
+		}
+	}
+	// ==================================================================
+    "item_health_8"
+	{
+	    "ID"                            "1074"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_vitality_booster"
+	    "ItemCost"                      "12800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_health_mod_8"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"         "32000"
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+	//===============================================
+	//	regen items
+	//===============================================
+    "item_regen_1"
+	{
+	    "ID"                            "1090"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_ring_of_regen"
+	    "ItemCost"                      "100"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "1"
+
+		"ItemPurchasable"				"1"
+		
+		"ItemQuality"					"epic"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		
+
+
+        "Modifiers"
+        {
+            "item_regen_mod_1"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"         "6"
+                }
+            }
+        }
+	}
+
+
+
+	//==================================================================
+	"item_recipe_regen_2"
+	{
+	    "ID"                            "1091"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_regen_2"
+		"ItemRequirements"
+		{
+			"01"						"item_regen_1"
+		}
+	}
+	// ==================================================================
+    "item_regen_2"
+	{
+	    "ID"                            "1092"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_ring_of_regen"
+	    "ItemCost"                      "200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_regen_mod_2"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"         "12"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_regen_3"
+	{
+	    "ID"                            "1093"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_regen_3"
+		"ItemRequirements"
+		{
+			"01"						"item_regen_2"
+		}
+	}
+	// ==================================================================
+    "item_regen_3"
+	{
+	    "ID"                            "1094"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_ring_of_regen"
+	    "ItemCost"                      "400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_regen_mod_3"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"         "24"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_regen_4"
+	{
+	    "ID"                            "1095"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_regen_4"
+		"ItemRequirements"
+		{
+			"01"						"item_regen_3"
+		}
+	}
+	// ==================================================================
+    "item_regen_4"
+	{
+	    "ID"                            "1096"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_ring_of_regen"
+	    "ItemCost"                      "800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_regen_mod_4"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"         "48"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_regen_5"
+	{
+	    "ID"                            "1097"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_regen_5"
+		"ItemRequirements"
+		{
+			"01"						"item_regen_4"
+		}
+	}
+	// ==================================================================
+    "item_regen_5"
+	{
+	    "ID"                            "1098"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_ring_of_regen"
+	    "ItemCost"                      "1600"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_regen_mod_5"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"         "96"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_regen_6"
+	{
+	    "ID"                            "1099"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_regen_6"
+		"ItemRequirements"
+		{
+			"01"						"item_regen_5"
+		}
+	}
+	// ==================================================================
+    "item_regen_6"
+	{
+	    "ID"                            "1100"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_ring_of_regen"
+	    "ItemCost"                      "3200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_regen_mod_6"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"         "192"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_regen_7"
+	{
+	    "ID"                            "1101"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_regen_7"
+		"ItemRequirements"
+		{
+			"01"						"item_regen_6"
+		}
+	}
+	// ==================================================================
+    "item_regen_7"
+	{
+	    "ID"                            "1102"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_ring_of_regen"
+	    "ItemCost"                      "6400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_regen_mod_7"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"         "384"
+                }
+            }
+        }
+    }
+
+
+
+	//==================================================================
+	"item_recipe_regen_8"
+	{
+	    "ID"                            "1103"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_regen_8"
+		"ItemRequirements"
+		{
+			"01"						"item_regen_7"
+		}
+	}
+	// ==================================================================
+    "item_regen_8"
+	{
+	    "ID"                            "1104"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_ring_of_regen"
+	    "ItemCost"                      "12800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_regen_mod_8"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"         "768"
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+	// ==================================================================
+    "item_armor_4"
+	{
+	    "ID"                            "1116"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_chainmail"
+	    "ItemCost"                      "800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_armor_mod_4"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"         "2"
+                }
+            }
+        }
+    }
+
+
+	//==================================================================
+	"item_recipe_armor_5"
+	{
+	    "ID"                            "1117"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_armor_5"
+		"ItemRequirements"
+		{
+			"01"						"item_armor_4"
+		}
+	}
+	// ==================================================================
+    "item_armor_5"
+	{
+	    "ID"                            "1118"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_chainmail"
+	    "ItemCost"                      "1600"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_armor_mod_5"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"         "4"
+                }
+            }
+        }
+    }
+
+
+	//==================================================================
+	"item_recipe_armor_6"
+	{
+	    "ID"                            "1119"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_armor_6"
+		"ItemRequirements"
+		{
+			"01"						"item_armor_5"
+		}
+	}
+	// ==================================================================
+    "item_armor_6"
+	{
+	    "ID"                            "1120"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_chainmail"
+	    "ItemCost"                      "3200"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_armor_mod_6"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"         "9"
+                }
+            }
+        }
+    }
+
+
+	//==================================================================
+	"item_recipe_armor_7"
+	{
+	    "ID"                            "1121"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_armor_7"
+		"ItemRequirements"
+		{
+			"01"						"item_armor_6"
+		}
+	}
+	// ==================================================================
+    "item_armor_7"
+	{
+	    "ID"                            "1122"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_chainmail"
+	    "ItemCost"                      "6400"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_armor_mod_7"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"         "17"
+                }
+            }
+        }
+    }
+
+
+	//==================================================================
+	"item_recipe_armor_8"
+	{
+	    "ID"                            "1123"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_armor_8"
+		"ItemRequirements"
+		{
+			"01"						"item_armor_7"
+		}
+	}
+	// ==================================================================
+    "item_armor_8"
+	{
+	    "ID"                            "1124"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_chainmail"
+	    "ItemCost"                      "12800"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_armor_mod_8"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"         "76"
+                }
+            }
+        }
+    }
+
+
+	//==================================================================
+	"item_recipe_armor_9"
+	{
+	    "ID"                            "1125"
+		"BaseClass"						"item_datadriven"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"12800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_armor_9"
+		"ItemRequirements"
+		{
+			"01"						"item_armor_8"
+		}
+	}
+	// ==================================================================
+    "item_armor_9"
+	{
+	    "ID"                            "1126"
+	    "BaseClass"                     "item_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "item_chainmail"
+	    "ItemCost"                      "25600"
+		"ItemShopTags"					""
+	    "ItemKillable"                  "0"
+	    "ItemSellable"                  "1"
+	    "ItemDroppable"                 "0"
+        "ItemInitialCharges"            "0"
+		"ItemRecipe"					"0"
+		"ItemPurchasable"				"1"
+		
+        "Modifiers"
+        {
+            "item_armor_mod_9"
+            {
+                "Passive" "1"
+                "IsDebuff" "0"
+                "IsPurgable" "0"    
+                "IsHidden" "1"
+                "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"         "165"
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+}

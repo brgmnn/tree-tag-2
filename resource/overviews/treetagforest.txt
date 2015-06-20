@@ -1,0 +1,8 @@
+treetagforest
+{
+	material materials/overviews/treetagforest.vmat
+	pos_x -6700
+	pos_y 6600
+	scale 13.477
+}
+

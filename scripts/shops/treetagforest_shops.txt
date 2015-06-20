@@ -1,0 +1,110 @@
+"dota_shops"
+{
+	"consumables"
+	{
+		"item"		"item_regen_1"
+		"item"		"item_regen_2"
+		"item"		"item_regen_3"
+		"item"		"item_regen_4"
+		"item"		"item_regen_5"
+		"item"		"item_regen_6"
+		"item"		"item_regen_7"
+		"item"		"item_regen_8"
+		
+		"item"		"item_armor_4"
+		"item"		"item_armor_5"
+		"item"		"item_armor_6"
+	}
+
+	"attributes"
+	{
+		"item"		"item_health_1"
+		"item"		"item_health_2"
+		"item"		"item_health_3"
+		"item"		"item_health_4"
+		"item"		"item_health_5"
+		"item"		"item_health_6"
+		"item"		"item_health_7"
+		"item"		"item_health_8"
+
+		"item"		"item_armor_7"
+		"item"		"item_armor_8"
+		"item"		"item_armor_9"
+	}
+
+	"weapons_armor"
+	{
+		"item"		"item_blades_1"
+		"item"		"item_blades_2"
+		"item"		"item_blades_3"
+		"item"		"item_blades_4"
+		"item"		"item_blades_5"
+		"item"		"item_blades_6"
+		"item"		"item_blades_7"
+		"item"		"item_blades_8"
+		"item"		"item_blades_9"
+		"item"		"item_blades_10"
+		"item"		"item_blades_11"
+	}
+	
+	"misc"
+	{
+		"item"		"item_haste_1"
+		"item"		"item_haste_2"
+		"item"		"item_haste_3"
+		"item"		"item_haste_4"
+		"item"		"item_haste_5"
+		"item"		"item_haste_6"
+		"item"		"item_haste_7"
+		"item"		"item_haste_8"
+	}	
+	
+	// Level 1 - Green Recipes
+	"basics"
+	{
+
+	}
+
+	// Level 2 - Blue Recipes
+	"support"
+	{
+
+	}
+	
+	"magics"
+	{
+
+	}
+	
+	// Level 3 - Purple Recipes
+	"defense"
+	{
+
+	}
+	
+	"weapons"
+	{
+
+	}
+	
+	// Level 4 - Orange / Orb / Artifacts
+	"artifacts"
+	{
+
+	}
+
+	"sideshop1"
+	{
+
+	}
+
+	"sideshop2"
+	{
+
+	}
+	
+	"secretshop"
+	{
+	
+	}
+}
