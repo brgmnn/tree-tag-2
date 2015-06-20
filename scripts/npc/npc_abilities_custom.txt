@@ -18,14 +18,14 @@
         "BaseClass"                 "ability_lua"
         "AbilityTextureName"                "furion_force_of_nature"
         "ScriptFile"                    "furion_force_of_nature_lua"
-        
+
         // Stats
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "750"
         "AbilityCastPoint"              "0.5 0.5 0.5 0.5"
         "AbilityCooldown"               "37 37 37 37"
         "AbilityManaCost"               "160 160 160 160"
-        
+
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
@@ -244,10 +244,10 @@
     "npc_treetag_newflare"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING" 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "AbilityTextureName"            "rattletrap_rocket_flare"
         "MaxLevel"                      "1"
-        
+
         "AbilityCooldown"               "18"
 
         "AbilityCastRange" "0"
@@ -280,7 +280,7 @@
     "furion_spawntree"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityTextureName" "furion_sprout"
         "AbilityCastRange" "800"
         "AbilityCastPoint" "0.5"
@@ -356,7 +356,7 @@
     "reveal"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityTextureName" "tinker_laser"
         "AbilityCastRange" "20000"
         "AbilityCastPoint" "0.1"
@@ -384,7 +384,7 @@
     "watcher_buff"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
 
         "MaxLevel"                      "1"
@@ -424,7 +424,7 @@
     "blocktree_buff"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
         "MaxLevel"                      "1"
 
@@ -459,7 +459,7 @@
     "newflare_buff"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
         "AbilityTextureName" "alchemist_goblins_greed"
         "MaxLevel"                      "1"
 
@@ -498,7 +498,7 @@
     "midwatcher_buff"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
 
         "MaxLevel"                      "1"
@@ -538,7 +538,7 @@
     "eggspawn_buff"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
 
         "MaxLevel"                      "1"
@@ -577,7 +577,7 @@
     "ancientbuff"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
 
         "MaxLevel"                      "1"
@@ -638,7 +638,7 @@
     "bigtreebuff"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
 
         "MaxLevel"                      "1"
@@ -693,7 +693,7 @@
     "destroy_aoe"
     {
         "BaseClass"                     "ability_datadriven"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE" 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityTextureName"            "gyrocopter_call_down"
         "AbilityCastPoint"              "0.0"
         "AbilityCooldown"               "0"
@@ -875,13 +875,13 @@
         }
     }
 
-    
+
 
 	"aoe_trees"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE" 
-        //"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        //"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityTextureName" "medusa_split_shot"
         "AbilityCastRange" "200"
         "AbilityCastPoint" "0.0"
@@ -911,7 +911,7 @@
 			"treerape"
 			{
 				"IsDebuff" "0"
-				"IsPurgable" "0"			
+				"IsPurgable" "0"
 				"ThinkInterval" "0.15"
                 "IsHidden"        "1"
 				"OnIntervalThink"
@@ -975,7 +975,7 @@
                 "IsDebuff" "0"
                 "IsPurgable" "0"
                 "IsHidden" "0"
-                "ThinkInterval" "0.2" 
+                "ThinkInterval" "0.2"
 
                 "OnIntervalThink"
                 {
@@ -1035,13 +1035,13 @@
                             "Radius"    "250"
                         }
                         "Radius"    "250"
-                    } 
+                    }
 
                     "RunScript"
                     {
                         "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
                         "Function"          "eatmana"
-                    } 
+                    }
                 }
             }
         }
@@ -1087,7 +1087,7 @@
                 "IsDebuff" "0"
                 "IsPurgable" "0"
                 "IsHidden" "0"
-                "ThinkInterval" "0.2" 
+                "ThinkInterval" "0.2"
 
                 "OnIntervalThink"
                 {
@@ -1108,7 +1108,7 @@
                         "EffectDurationScale"       "1"
                         "EffectColorA" "255 255 0"
                     }
-                    
+
 
                     "FireEffect"
                     {
@@ -1118,7 +1118,7 @@
                         "EffectLifeDurationScale" "1"
                         "EffectColorA" "255 255 0"
                     }
-                    
+
 
 
                     "DestroyTrees"
@@ -1129,13 +1129,13 @@
                             "Radius"    "250"
                         }
                         "Radius"    "250"
-                    } 
+                    }
 
                     "RunScript"
                     {
                         "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
                         "Function"          "eatmana"
-                    } 
+                    }
                 }
             }
         }
@@ -1146,7 +1146,7 @@
 	"goldattack"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
 
 		"MaxLevel"						"1"
@@ -1206,7 +1206,7 @@
     "gold_ticker"
     {
         "BaseClass" "ability_datadriven"
-        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE" 
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
 
         "MaxLevel"                      "1"
@@ -1239,7 +1239,7 @@
             {
                 "IsDebuff" "0"
                 "IsPurgable" "0"
-                //"EffectName" "goldthinkerinoeffecterino"              
+                //"EffectName" "goldthinkerinoeffecterino"
                 "ThinkInterval" "1.0"
                 "OnIntervalThink"
                 {
@@ -1615,10 +1615,10 @@
             {
                 "Duration" "4"
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
+                "IsPurgable" "0"
                 "IsHidden" "0"
-                
-                "ThinkInterval" "0.2" 
+
+                "ThinkInterval" "0.2"
 
                 "OnIntervalThink"
                 {
@@ -1842,7 +1842,7 @@
         "AbilityCooldown"               "0.5"
         "AbilityManaCost"               "0"
         "AbilityChannelTime"            "60.0"
-        
+
 
 
         "OnOwnerDied"
@@ -1858,11 +1858,11 @@
             //    "GrantsGold"    "false"
             //    "GrantsXP"      "false"
             //}
-            "RunScript"
-            {
-                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
-                "Function"          "spawnghost"
-            }
+            //"RunScript"
+            //{
+            //    "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+            //    "Function"          "spawnghost"
+            //}
         }
 
         "OnUpgrade"
@@ -1911,8 +1911,8 @@
                 //"Passive" "1"
                 //"Duration" "30"
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
-                "IsHidden" "0"        
+                "IsPurgable" "0"
+                "IsHidden" "0"
                 "ThinkInterval" "1.5"
                 "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 
@@ -2028,7 +2028,7 @@
                     }
                 }
             }
-                
+
             "channelling_animation"
             {
                 "IsHidden" "1"
@@ -2073,8 +2073,8 @@
             {
                 "Duration" "90"
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
-                "IsHidden" "0"        
+                "IsPurgable" "0"
+                "IsHidden" "0"
                 "ThinkInterval" "1.5"
                 "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 
@@ -2092,7 +2092,7 @@
 
                 "OnIntervalThink"
                 {
-                    
+
                 }
             }
             "spirit_speed"
@@ -2130,7 +2130,7 @@
         "AbilityCooldown"               "0.5"
         "AbilityManaCost"               "0"
         "AbilityChannelTime"            "60.0"
-        
+
 
         "OnUpgrade"
         {
@@ -2178,8 +2178,8 @@
                 //"Passive" "1"
                 //"Duration" "30"
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
-                "IsHidden" "0"        
+                "IsPurgable" "0"
+                "IsHidden" "0"
                 "ThinkInterval" "1.5"
                 "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 
@@ -2237,7 +2237,7 @@
                     }
                 }
             }
-                
+
             "channelling_animationx"
             {
                 "IsHidden" "1"
@@ -2261,8 +2261,8 @@
             {
                 "Duration" "90"
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
-                "IsHidden" "0"        
+                "IsPurgable" "0"
+                "IsHidden" "0"
                 "ThinkInterval" "1.5"
                 "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 
@@ -2280,7 +2280,7 @@
 
                 "OnIntervalThink"
                 {
-                    
+
                 }
             }
             "spirit_speed"
@@ -2316,7 +2316,7 @@
         "AbilityCastPoint"              "5"
         "AbilityCooldown"               "30"
         "AbilityManaCost"               "0"
-        
+
         "OnAbilityPhaseStart"
         {
             "ApplyModifier"
@@ -2348,10 +2348,10 @@
             {
                 "Duration" "4"
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
+                "IsPurgable" "0"
                 "IsHidden" "1"
-                
-                "ThinkInterval" "0.34" 
+
+                "ThinkInterval" "0.34"
 
                 "OnIntervalThink"
                 {
@@ -2392,7 +2392,7 @@
         "AbilityCooldown"               "2.6"
         "AbilityManaCost"               "0"
         "AbilityChannelTime"            "2"
-        
+
 
         "OnSpellStart"
         {
@@ -2420,7 +2420,7 @@
             "drainstun"
             {
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
+                "IsPurgable" "0"
                 "IsHidden" "0"
                 "OverrideAnimation"     "ACT_DOTA_DISABLED"
                 "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -2450,7 +2450,7 @@
             "drainstunend"
             {
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
+                "IsPurgable" "0"
                 "IsHidden" "0"
                 "Duration"  "0.5"
                 "OverrideAnimation"     "ACT_DOTA_DISABLED"
@@ -2606,7 +2606,7 @@
             "collectmanafromspirits"
             {
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
+                "IsPurgable" "0"
                 "IsHidden" "1"
                 "ThinkInterval" "1.0"
 
@@ -2719,7 +2719,7 @@
             "turretantistack"
             {
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
+                "IsPurgable" "0"
                 "IsHidden" "1"
                 "ThinkInterval" "1.0"
 
@@ -2759,7 +2759,7 @@
             "ownermana"
             {
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
+                "IsPurgable" "0"
                 "IsHidden" "1"
                 "ThinkInterval" "0.2"
                 "Passive"       "1"
@@ -2870,7 +2870,7 @@
         "AbilityCooldown"               "0"     // the cooldown fucks with the recasting; do not touch
         "AbilityManaCost"               "0"
         "AbilityChannelTime"            "2.0"
-        
+
 
 
         "OnSpellStart"
@@ -2947,8 +2947,8 @@
             "collectingmana"
             {
                 "IsDebuff" "0"
-                "IsPurgable" "0"    
-                "IsHidden" "1"        
+                "IsPurgable" "0"
+                "IsHidden" "1"
                 "ThinkInterval" "1.0"
 
                 "OnCreated"
