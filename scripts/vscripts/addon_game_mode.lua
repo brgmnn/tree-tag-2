@@ -1,7 +1,3 @@
---require('lib.statcollection')
-
-
-
 --[[
 
 
@@ -24,12 +20,6 @@ replace fortify
 
 
 Testing = false --Useful for turning off stat-collection when developing
-
---if not Testing then --Only send stats when not testing
---  statcollection.addStats({
---    modID = 'f2bd64d63f4cebf6cf1dae7f345ce7f6' --GET THIS FROM http://getdotastats.com/#d2mods__my_mods
---  })
---end
 
 
 
