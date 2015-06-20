@@ -66,7 +66,7 @@ function Precache( context )
 
 	PrecacheResource("model_folder", "particles/units/heroes/hero_techies", context)
 	PrecacheResource("particle_folder", "particles/units/heroes/hero_techies", context)
-	
+
 
 
     PrecacheUnitByNameSync("npc_dota_goodguys_tower1_top", context)
@@ -106,7 +106,7 @@ function Precache( context )
 
     PrecacheResource( "model", "models/items/furion/treant/primeval_treant/primeval_treant.vmdl", context )
     PrecacheResource( "model", "models/items/furion/treant/shroomling_treant/shroomling_treant.vmdl", context )
-    
+
 
     PrecacheResource( "model", "models/props_structures/good_base_wall006.vmdl", context )
 
@@ -151,7 +151,7 @@ function Precache( context )
     PrecacheResource( "model", "models/items/courier/tinkbot/tinkbot.vmdl", context )
     PrecacheResource( "model", "models/items/courier/shagbark/shagbark.vmdl", context )
     PrecacheResource( "model", "models/heroes/furion/treant.vmdl", context )
-    
+
 
     PrecacheResource( "particle", "particles/econ/courier/courier_greevil_blue/courier_greevil_blue_ambient_3.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_phoenix/phoenix_ambient_mane_blue.vpcf", context )
@@ -169,7 +169,7 @@ function Precache( context )
     PrecacheResource( "particle", "particles/units/heroes/hero_batrider/batrider_firefly_path.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_batrider/batrider_firefly.vpcf", context )
 
-    
+
     PrecacheResource( "particle", "particles/units/heroes/hero_enchantress/enchantress_enchant_slow_grass_long.vpcf", context )
 
 
@@ -202,7 +202,7 @@ end
 function CTreeTagGameMode:InitGameMode()
 	print( "Tree Tag is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 1 )
-	
+
     ListenToGameEvent( "entity_killed", Dynamic_Wrap( CTreeTagGameMode, 'OnEntityKilled' ), self )
 
 	--ListenToGameEvent('player_fullyjoined', Dynamic_Wrap(CTreeTagGameMode, 'OnPlayerLoaded'), self)
@@ -347,14 +347,14 @@ function CTreeTagGameMode:OnEntityKilled( event )
 
     print("an entity was killed")
 
-    if killedUnit and killedUnit:IsRealHero() then
+    if killedUnit and killedUnit:IsRealHero() and killedUnit:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
         local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
         newItem:SetPurchaseTime( 0 )
         newItem:SetPurchaser( killedUnit )
         local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
         tombstone:SetContainedItem( newItem )
         tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
-        FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true ) 
+        FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )
     end
 end
 
@@ -505,10 +505,10 @@ function CTreeTagGameMode:OnThink()
     					itz2 = CreateItem("item_chop_tree", zxc, zxc)
     					itz2:SetPurchaseTime(itz2:GetPurchaseTime()-12)
     					zxc:AddItem(itz2)
-    					
 
-    					
-    					
+
+
+
     					zxc:SetAbilityPoints(0)
     					needshero[id] = false
     				elseif needshero[id] then
@@ -604,7 +604,7 @@ function CTreeTagGameMode:OnThink()
 
 
 		--print( "Template addon script is running." )
-		
+
 		self:_CheckForDefeat()
 
 
@@ -683,7 +683,7 @@ function CTreeTagGameMode:_CheckForDefeat()
 				return
 			end
 		end
-	
+
 
 		-- auto 2 min win for testing
 		--if GameRules:GetGameTime()-starttime >= 120 then
@@ -694,21 +694,21 @@ function CTreeTagGameMode:_CheckForDefeat()
 		if currentGameTime >= 1159 then
 			if not warnB then
 				local messageinfo = {message = "Dire, prepare to kill the World Tree!", duration = 5}
-				FireGameEvent("show_center_message",messageinfo) 
+				FireGameEvent("show_center_message",messageinfo)
 				warnB=true
 			end
 		end
 		if currentGameTime >= 1164 then
 			if not warnC then
 				local messageinfo = {message = "Radiant, prepare to heal the World Tree!", duration = 5}
-				FireGameEvent("show_center_message",messageinfo) 
+				FireGameEvent("show_center_message",messageinfo)
 				warnC=true
 			end
 		end
 		if currentGameTime >= 1169 then
 			if not warnA then
 				local messageinfo = {message = "Tree Active in 30s!", duration = 5}
-				FireGameEvent("show_center_message",messageinfo) 
+				FireGameEvent("show_center_message",messageinfo)
 				warnA=true
 			end
 		end
@@ -722,7 +722,7 @@ function CTreeTagGameMode:_CheckForDefeat()
 				end
 				ended=true
 				local messageinfo = {message = "Save the tree!", duration = 10}
-				FireGameEvent("show_center_message",messageinfo) 
+				FireGameEvent("show_center_message",messageinfo)
 			end
 			return
 		end
