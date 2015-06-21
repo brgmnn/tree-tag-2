@@ -3,490 +3,490 @@
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
 "DOTAHeroes"
 {
-	"npc_dota_hero_wisp"
-	{
-		"override_hero"				"npc_dota_hero_wisp"
+    "npc_dota_hero_wisp"
+    {
+        "override_hero"             "npc_dota_hero_wisp"
 
-		"Ability1"				""
-		"Ability2"				""
-		"Ability3"				""
-		"Ability4"				""
-		"Ability5"				""
-		"Ability6"				""
-		"Ability7"				""
-		"Ability8"				""
-		"AbilityLayout"                         "5"
-		"VisionNighttimeRange"			"200"
-		"VisionDaytimeRange"			"200"
-		"AttributeBaseStrength"			"5000"									// Base strength
-		"ArmorPhysical"					"500.0"								// Physical protection.
-		"MagicalResistance"				"100"									// Magical protection (percentage).
+        "Ability1"              ""
+        "Ability2"              ""
+        "Ability3"              ""
+        "Ability4"              ""
+        "Ability5"              ""
+        "Ability6"              ""
+        "Ability7"              ""
+        "Ability8"              ""
+        "AbilityLayout"                         "5"
+        "VisionNighttimeRange"          "200"
+        "VisionDaytimeRange"            "200"
+        "AttributeBaseStrength"         "5000"                                  // Base strength
+        "ArmorPhysical"                 "500.0"                             // Physical protection.
+        "MagicalResistance"             "100"                                   // Magical protection (percentage).
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"0"
-		"BountyGoldMax"				"0"
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "0"
+        "BountyGoldMax"             "0"
 
-		"HasInventory"				"1"
+        "HasInventory"              "1"
 
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"	
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
-	}
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE"
+    }
 
 
-	"npc_dota_hero_shredder"
-	{
-		"override_hero"				"npc_dota_hero_shredder"
-		"ModelScale" 				"1.225"
+    "npc_dota_hero_shredder"
+    {
+        "override_hero"             "npc_dota_hero_shredder"
+        "ModelScale"                "1.225"
 
-		"MovementSpeed"				"250"
-		"MovementTurnRate"			"0.8"									// Turning rate.
-	    //"BoundsHullName" "DOTA_HULL_SIZE_HUGE" 		// HUGE means cant see walls uphill... doesnt quite work
-	    												// HUGE also gets you stuck after teleporting etc
-	    "BoundsHullName" "DOTA_HULL_SIZE_HERO"
-	    
-	    
-		"Ability1"						"treerapist"
-		"Ability2"						"goldattack"
-		//"Ability3"						"rattletrap_rocket_flare"
-		"Ability3"						"npc_treetag_newflare"
+        "MovementSpeed"             "250"
+        "MovementTurnRate"          "0.8"                                   // Turning rate.
+        //"BoundsHullName" "DOTA_HULL_SIZE_HUGE"        // HUGE means cant see walls uphill... doesnt quite work
+                                                        // HUGE also gets you stuck after teleporting etc
+        "BoundsHullName" "DOTA_HULL_SIZE_HERO"
 
-		"Ability4"					"timber_invis"
-		"Ability5"					"dustspell"  //necronomicon_warrior_sight
 
+        "Ability1"                      "treerapist"
+        "Ability2"                      "goldattack"
+        //"Ability3"                        "rattletrap_rocket_flare"
+        "Ability3"                      "npc_treetag_newflare"
 
-		"Ability6"						"timber_explode"
+        "Ability4"                  "timber_invis"
+        "Ability5"                  "dustspell"  //necronomicon_warrior_sight
 
-		"Ability7"						""
-		"Ability8"						""
-		"Ability9"						""
 
-		//"Ability6"					"shredder_chakram"
-		//"Ability7"					"shredder_return_chakram"
+        "Ability6"                      "timber_explode"
 
+        "Ability7"                      ""
+        "Ability8"                      ""
+        "Ability9"                      ""
 
-		"AbilityLayout"                         "6"
+        //"Ability6"                    "shredder_chakram"
+        //"Ability7"                    "shredder_return_chakram"
 
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"100"
-		"BountyGoldMax"				"100"
+        "AbilityLayout"                         "6"
 
 
-		"StatusHealth"					"350"				// Base health.
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "100"
+        "BountyGoldMax"             "100"
 
-		"AttributeBaseStrength"			"0"								// Base strength
-		"AttributeStrengthGain"			"1.0"								// Strength bonus per level.
-		"AttributeBaseAgility"			"0"									// Base agility
-		"AttributeAgilityGain"			"0"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"50"								// Base intelligence
-		"AttributeIntelligenceGain"		"0"								// Intelligence bonus per level.
 
-		"ArmorPhysical"					"0"									// Physical protection.
+        "StatusHealth"                  "350"               // Base health.
 
-		"StatusManaRegen"				"70"							// Mana regeneration rate.
+        "AttributeBaseStrength"         "0"                             // Base strength
+        "AttributeStrengthGain"         "1.0"                               // Strength bonus per level.
+        "AttributeBaseAgility"          "0"                                 // Base agility
+        "AttributeAgilityGain"          "0"                                 // Agility bonus per level.
+        "AttributeBaseIntelligence"     "50"                                // Base intelligence
+        "AttributeIntelligenceGain"     "0"                             // Intelligence bonus per level.
 
+        "ArmorPhysical"                 "0"                                 // Physical protection.
 
-		// Attack
-		//-------------------------------------------------------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"9"									// Damage range min.
-		"AttackDamageMax"			"9"									// Damage range max.
-		"AttackRate"				"1.15"									// Speed of attack.
-		"AttackAnimationPoint"		"0.36"									// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
-		"AttackRange"				"50"									// Range within a target can be attacked.
+        "StatusManaRegen"               "70"                            // Mana regeneration rate.
 
-	}
 
+        // Attack
+        //-------------------------------------------------------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamageMin"           "9"                                 // Damage range min.
+        "AttackDamageMax"           "9"                                 // Damage range max.
+        "AttackRate"                "1.15"                                  // Speed of attack.
+        "AttackAnimationPoint"      "0.36"                                  // Normalized time in animation cycle to attack.
+        "AttackAcquisitionRange"    "600"                                   // Range within a target can be acquired.
+        "AttackRange"               "50"                                    // Range within a target can be attacked.
 
-	"npc_dota_hero_batrider"
-	{
-		"override_hero"				"npc_dota_hero_batrider"
-		"ModelScale" 				"1.0"
+    }
 
-		"MovementSpeed"				"260"
-		"MovementTurnRate"			"0.8"
-	    "BoundsHullName" "DOTA_HULL_SIZE_HERO"
-	    
-	    
-		"Ability1"						"treerapist_bat"
-		"Ability2"						"goldattack"
-		//"Ability3"						"rattletrap_rocket_flare"
-		"Ability3"						"npc_treetag_newflare"
 
-		"Ability4"					"timber_invis"
-		"Ability5"					"dustspell"  //necronomicon_warrior_sight
-		"Ability6"					"lina_light_strike_array"
+    "npc_dota_hero_batrider"
+    {
+        "override_hero"             "npc_dota_hero_batrider"
+        "ModelScale"                "1.0"
 
+        "MovementSpeed"             "260"
+        "MovementTurnRate"          "0.8"
+        "BoundsHullName" "DOTA_HULL_SIZE_HERO"
 
-		"AbilityLayout"                         "6"
 
+        "Ability1"                      "treerapist_bat"
+        "Ability2"                      "goldattack"
+        //"Ability3"                        "rattletrap_rocket_flare"
+        "Ability3"                      "npc_treetag_newflare"
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"100"
-		"BountyGoldMax"				"100"
+        "Ability4"                  "timber_invis"
+        "Ability5"                  "dustspell"  //necronomicon_warrior_sight
+        "Ability6"                  "lina_light_strike_array"
 
 
-		"StatusHealth"					"300"				// Base health.
+        "AbilityLayout"                         "6"
 
-		"AttributeBaseStrength"			"0"								// Base strength
-		"AttributeStrengthGain"			"1.0"								// Strength bonus per level.
-		"AttributeBaseAgility"			"0"									// Base agility
-		"AttributeAgilityGain"			"0"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"50"								// Base intelligence
-		"AttributeIntelligenceGain"		"0"								// Intelligence bonus per level.
 
-		"ArmorPhysical"					"0"									// Physical protection.
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "100"
+        "BountyGoldMax"             "100"
 
-		"StatusManaRegen"				"70"							// Mana regeneration rate.
 
+        "StatusHealth"                  "300"               // Base health.
 
-		// Attack
-		//-------------------------------------------------------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"-41"									// Damage range min.
-		"AttackDamageMax"			"-41"									// Damage range max.
-		"AttackRate"				"1.15"									// Speed of attack.
-		"AttackAnimationPoint"		"0.36"									// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
-		"AttackRange"				"50"									// Range within a target can be attacked.
+        "AttributeBaseStrength"         "0"                             // Base strength
+        "AttributeStrengthGain"         "1.0"                               // Strength bonus per level.
+        "AttributeBaseAgility"          "0"                                 // Base agility
+        "AttributeAgilityGain"          "0"                                 // Agility bonus per level.
+        "AttributeBaseIntelligence"     "50"                                // Base intelligence
+        "AttributeIntelligenceGain"     "0"                             // Intelligence bonus per level.
 
-	}
+        "ArmorPhysical"                 "0"                                 // Physical protection.
 
+        "StatusManaRegen"               "70"                            // Mana regeneration rate.
 
-	"npc_dota_hero_abaddon"
-	{
-		"override_hero"				"npc_dota_hero_abaddon"
-		"ModelScale" 				"0.4"
 
-		"MovementSpeed"				"350"
-		"MovementTurnRate"			"1.0"									// Turning rate.
-	    "BoundsHullName" "DOTA_HULL_SIZE_SMALL"
-	    
-	    
-		"Ability1"						""
-		"Ability2"						""
-		"Ability3"						""
-		"Ability4"						""
-		"Ability7"						"aoe_trees"
+        // Attack
+        //-------------------------------------------------------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamageMin"           "-41"                                   // Damage range min.
+        "AttackDamageMax"           "-41"                                   // Damage range max.
+        "AttackRate"                "1.15"                                  // Speed of attack.
+        "AttackAnimationPoint"      "0.36"                                  // Normalized time in animation cycle to attack.
+        "AttackAcquisitionRange"    "600"                                   // Range within a target can be acquired.
+        "AttackRange"               "50"                                    // Range within a target can be attacked.
 
-		"HasInventory"				"0"
+    }
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"0"
-		"BountyGoldMax"				"0"
 
-		"AttributeBaseStrength"			"10"								// Base strength
-		"AttributeStrengthGain"			"2.0"								// Strength bonus per level.
-		"AttributeBaseAgility"			"0"									// Base agility
-		"AttributeAgilityGain"			"0"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"50"								// Base intelligence
-		"AttributeIntelligenceGain"		"2.0"								// Intelligence bonus per level.
+    "npc_dota_hero_abaddon"
+    {
+        "override_hero"             "npc_dota_hero_abaddon"
+        "ModelScale"                "0.4"
 
-		"ArmorPhysical"					"0"									// Physical protection.
+        "MovementSpeed"             "350"
+        "MovementTurnRate"          "1.0"                                   // Turning rate.
+        "BoundsHullName" "DOTA_HULL_SIZE_SMALL"
 
-		"StatusManaRegen"				"0.5"								// Mana regeneration rate.
 
+        "Ability1"                      ""
+        "Ability2"                      ""
+        "Ability3"                      ""
+        "Ability4"                      ""
+        "Ability7"                      "aoe_trees"
 
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"0"			// Damage range min.
-		"AttackDamageMax"			"0"			// Damage range max.	
-		"AttackRate"				"1.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.0"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
-		"AttackRange"				"0"			// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			"0"			// Speed of projectile.		
-	}
+        "HasInventory"              "0"
 
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "0"
+        "BountyGoldMax"             "0"
 
-	"npc_dota_hero_treant"
-	{
-		"override_hero"				"npc_dota_hero_treant"
-		"ModelScale" 				".325"
-		"RingRadius"				"30"
-		"MovementTurnRate"			"0.8"									// Turning rate.
+        "AttributeBaseStrength"         "10"                                // Base strength
+        "AttributeStrengthGain"         "2.0"                               // Strength bonus per level.
+        "AttributeBaseAgility"          "0"                                 // Base agility
+        "AttributeAgilityGain"          "0"                                 // Agility bonus per level.
+        "AttributeBaseIntelligence"     "50"                                // Base intelligence
+        "AttributeIntelligenceGain"     "2.0"                               // Intelligence bonus per level.
 
-	    //"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
-	    "BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+        "ArmorPhysical"                 "0"                                 // Physical protection.
 
-		"MagicalResistance"				"92"
+        "StatusManaRegen"               "0.5"                               // Mana regeneration rate.
 
-		"MovementSpeed"				"260"
 
-		"HasInventory"				"0"
+        // Attack
+        //----------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackDamageMin"           "0"         // Damage range min.
+        "AttackDamageMax"           "0"         // Damage range max.
+        "AttackRate"                "1.0"       // Speed of attack.
+        "AttackAnimationPoint"      "0.0"       // Normalized time in animation cycle to attack.
+        "AttackAcquisitionRange"    "0"         // Range within a target can be acquired.
+        "AttackRange"               "0"         // Range within a target can be attacked.
+        "ProjectileModel"           ""          // Particle system model for projectile.
+        "ProjectileSpeed"           "0"         // Speed of projectile.
+    }
 
-		// 1 = guise
-		//"Ability3"					"place_mine"
-		//"Ability4"					"place_wall"
-		//"Ability5"					"place_turret"
 
-		//"Ability1"					"swapteam"
-		"Ability1"					"tree_invis"
-		"Ability2"					"antimage_blink"
-		"Ability3"					"tree_manapassive"
-		"Ability4"					"destroy_aoe"
-		"Ability5"					"tree_repair"
-		"Ability6"					"aoe_trees"
+    "npc_dota_hero_treant"
+    {
+        "override_hero"             "npc_dota_hero_treant"
+        "ModelScale"                ".325"
+        "RingRadius"                "30"
+        "MovementTurnRate"          "0.8"                                   // Turning rate.
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"100"
-		"BountyGoldMax"				"100"
+        //"BoundsHullName"          "DOTA_HULL_SIZE_SMALL"
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
 
-		"StatusHealth"				"50"
+        "MagicalResistance"             "92"
 
-		"AbilityLayout"                         "5"
+        "MovementSpeed"             "260"
 
-		"AttributeBaseStrength"			"0"								// Base strength
-		"AttributeStrengthGain"			"0.0"								// Strength bonus per level.
-		"AttributeBaseAgility"			"0"									// Base agility
-		"AttributeAgilityGain"			"0"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"0"								// Base intelligence
-		"AttributeIntelligenceGain"		"0.0"								// Intelligence bonus per level.
+        "HasInventory"              "0"
 
-		"StatusMana"				"8000"		// Base mana.
-		"StatusManaRegen"			"0.0"			// Mana regeneration rate.
+        // 1 = guise
+        //"Ability3"                    "place_mine"
+        //"Ability4"                    "place_wall"
+        //"Ability5"                    "place_turret"
 
-		"ArmorPhysical"					"-5"									// Physical protection.
+        //"Ability1"                    "swapteam"
+        "Ability1"                  "tree_invis"
+        "Ability2"                  "antimage_blink"
+        "Ability3"                  "tree_manapassive"
+        "Ability4"                  "destroy_aoe"
+        "Ability5"                  "tree_repair"
+        "Ability6"                  "aoe_trees"
 
-		"AttackDamageMin"			"0"									// Damage range min.
-		"AttackDamageMax"			"0"									// Damage range max.
-		"AttackRate"				"1"									// Speed of attack.
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"	
-	}
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "100"
+        "BountyGoldMax"             "100"
 
+        "StatusHealth"              "50"
 
-	"npc_dota_hero_techies"
-	{
-		"override_hero"				"npc_dota_hero_techies"
-		"Model"						"models/items/furion/treant/shroomling_treant/shroomling_treant.vmdl"
-		"ModelScale" 				".425"
-		"RingRadius"				"30"
-		"MovementTurnRate"			"0.8"									// Turning rate.
+        "AbilityLayout"                         "5"
 
-	    //"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
-	    "BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+        "AttributeBaseStrength"         "0"                             // Base strength
+        "AttributeStrengthGain"         "0.0"                               // Strength bonus per level.
+        "AttributeBaseAgility"          "0"                                 // Base agility
+        "AttributeAgilityGain"          "0"                                 // Agility bonus per level.
+        "AttributeBaseIntelligence"     "0"                             // Base intelligence
+        "AttributeIntelligenceGain"     "0.0"                               // Intelligence bonus per level.
 
-		"MagicalResistance"				"92"
+        "StatusMana"                "8000"      // Base mana.
+        "StatusManaRegen"           "0.0"           // Mana regeneration rate.
 
-		"MovementSpeed"				"260"
+        "ArmorPhysical"                 "-5"                                    // Physical protection.
 
-		"HasInventory"				"0"
+        "AttackDamageMin"           "0"                                 // Damage range min.
+        "AttackDamageMax"           "0"                                 // Damage range max.
+        "AttackRate"                "1"                                 // Speed of attack.
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    }
 
-		// 1 = guise
-		//"Ability3"					"place_mine"
-		//"Ability4"					"place_wall"
-		//"Ability5"					"place_turret"
 
-		//"Ability1"					"swapteam"
-		"Ability1"					"techies_stasis_trap"
-		"Ability2"					"antimage_blink"
-		"Ability3"					"tree_manapassive"
-		"Ability4"					"destroy_aoe"
-		"Ability5"					"tree_repair"
-		"Ability6"					"aoe_trees"
+    "npc_dota_hero_techies"
+    {
+        "override_hero"             "npc_dota_hero_techies"
+        "Model"                     "models/items/furion/treant/shroomling_treant/shroomling_treant.vmdl"
+        "ModelScale"                ".425"
+        "RingRadius"                "30"
+        "MovementTurnRate"          "0.8"                                   // Turning rate.
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"100"
-		"BountyGoldMax"				"100"
+        //"BoundsHullName"          "DOTA_HULL_SIZE_SMALL"
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
 
-		"StatusHealth"				"50"
+        "MagicalResistance"             "92"
 
-		"AbilityLayout"                         "5"
+        "MovementSpeed"             "260"
 
-		"AttributeBaseStrength"			"0"								// Base strength
-		"AttributeStrengthGain"			"0.0"								// Strength bonus per level.
-		"AttributeBaseAgility"			"0"									// Base agility
-		"AttributeAgilityGain"			"0"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"0"								// Base intelligence
-		"AttributeIntelligenceGain"		"0.0"								// Intelligence bonus per level.
+        "HasInventory"              "0"
 
-		"StatusMana"				"8000"		// Base mana.
-		"StatusManaRegen"			"0.0"			// Mana regeneration rate.
+        // 1 = guise
+        //"Ability3"                    "place_mine"
+        //"Ability4"                    "place_wall"
+        //"Ability5"                    "place_turret"
 
-		"ArmorPhysical"					"-5"									// Physical protection.
+        //"Ability1"                    "swapteam"
+        "Ability1"                  "techies_stasis_trap"
+        "Ability2"                  "antimage_blink"
+        "Ability3"                  "tree_manapassive"
+        "Ability4"                  "destroy_aoe"
+        "Ability5"                  "tree_repair"
+        "Ability6"                  "aoe_trees"
 
-		"AttackDamageMin"			"0"									// Damage range min.
-		"AttackDamageMax"			"0"									// Damage range max.
-		"AttackRate"				"1"									// Speed of attack.
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"	
-	}
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "100"
+        "BountyGoldMax"             "100"
 
+        "StatusHealth"              "50"
 
+        "AbilityLayout"                         "5"
 
+        "AttributeBaseStrength"         "0"                             // Base strength
+        "AttributeStrengthGain"         "0.0"                               // Strength bonus per level.
+        "AttributeBaseAgility"          "0"                                 // Base agility
+        "AttributeAgilityGain"          "0"                                 // Agility bonus per level.
+        "AttributeBaseIntelligence"     "0"                             // Base intelligence
+        "AttributeIntelligenceGain"     "0.0"                               // Intelligence bonus per level.
 
+        "StatusMana"                "8000"      // Base mana.
+        "StatusManaRegen"           "0.0"           // Mana regeneration rate.
 
+        "ArmorPhysical"                 "-5"                                    // Physical protection.
 
+        "AttackDamageMin"           "0"                                 // Damage range min.
+        "AttackDamageMax"           "0"                                 // Damage range max.
+        "AttackRate"                "1"                                 // Speed of attack.
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    }
 
-	"npc_dota_hero_furion"
-	{
-		"override_hero"				"npc_dota_hero_furion"
-		"ModelScale" 				".325"
-		"RingRadius"				"30"
-		"MovementTurnRate"			"0.8"									// Turning rate.
 
-	    //"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
-	    "BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
 
-		"MagicalResistance"				"92"
 
-		"MovementSpeed"				"260"
 
-		"HasInventory"				"0"
 
-		// 1 = guise
-		//"Ability3"					"place_mine"
-		//"Ability4"					"place_wall"
-		//"Ability5"					"place_turret"
 
-		//"Ability1"					"furion_spawntree"
-		//"Ability1"					"furion_force_of_nature_lua"
-		"Ability1"					"chronoboost"
-		"Ability2"					"furion_teleportation"
-		"Ability3"					"tree_manapassive"
-		"Ability4"					"destroy_aoe"
-		"Ability5"					"tree_repair"
-		"Ability6"					"aoe_trees"
+    "npc_dota_hero_furion"
+    {
+        "override_hero"             "npc_dota_hero_furion"
+        "ModelScale"                ".325"
+        "RingRadius"                "30"
+        "MovementTurnRate"          "0.8"                                   // Turning rate.
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"100"
-		"BountyGoldMax"				"100"
+        //"BoundsHullName"          "DOTA_HULL_SIZE_SMALL"
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
 
-		"StatusHealth"				"50"
+        "MagicalResistance"             "92"
 
-		"AbilityLayout"                         "5"
+        "MovementSpeed"             "260"
 
-		"AttributeBaseStrength"			"0"								// Base strength
-		"AttributeStrengthGain"			"0.0"								// Strength bonus per level.
-		"AttributeBaseAgility"			"0"									// Base agility
-		"AttributeAgilityGain"			"0"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"0"								// Base intelligence
-		"AttributeIntelligenceGain"		"0.0"								// Intelligence bonus per level.
+        "HasInventory"              "0"
 
-		"StatusMana"				"8000"		// Base mana.
-		"StatusManaRegen"			"0.0"			// Mana regeneration rate.
+        // 1 = guise
+        //"Ability3"                    "place_mine"
+        //"Ability4"                    "place_wall"
+        //"Ability5"                    "place_turret"
 
-		"ArmorPhysical"					"-5"									// Physical protection.
+        //"Ability1"                    "furion_spawntree"
+        //"Ability1"                    "furion_force_of_nature_lua"
+        "Ability1"                  "chronoboost"
+        "Ability2"                  "furion_teleportation"
+        "Ability3"                  "tree_manapassive"
+        "Ability4"                  "destroy_aoe"
+        "Ability5"                  "tree_repair"
+        "Ability6"                  "aoe_trees"
 
-		"AttackDamageMin"			"0"									// Damage range min.
-		"AttackDamageMax"			"0"									// Damage range max.
-		"AttackRate"				"1"									// Speed of attack.
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"	
-	}
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "100"
+        "BountyGoldMax"             "100"
 
+        "StatusHealth"              "50"
 
-	"npc_dota_hero_venomancer"
-	{
-		"override_hero"				"npc_dota_hero_venomancer"
-		"Model"						"models/items/furion/treant/primeval_treant/primeval_treant.vmdl"
-		"ModelScale" 				".425"
-		"RingRadius"				"30"
-		"MovementTurnRate"			"0.8"									// Turning rate.
+        "AbilityLayout"                         "5"
 
-	    //"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
-	    "BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+        "AttributeBaseStrength"         "0"                             // Base strength
+        "AttributeStrengthGain"         "0.0"                               // Strength bonus per level.
+        "AttributeBaseAgility"          "0"                                 // Base agility
+        "AttributeAgilityGain"          "0"                                 // Agility bonus per level.
+        "AttributeBaseIntelligence"     "0"                             // Base intelligence
+        "AttributeIntelligenceGain"     "0.0"                               // Intelligence bonus per level.
 
-		"MagicalResistance"				"92"
+        "StatusMana"                "8000"      // Base mana.
+        "StatusManaRegen"           "0.0"           // Mana regeneration rate.
 
-		"MovementSpeed"				"260"
+        "ArmorPhysical"                 "-5"                                    // Physical protection.
 
-		"HasInventory"				"0"
+        "AttackDamageMin"           "0"                                 // Damage range min.
+        "AttackDamageMax"           "0"                                 // Damage range max.
+        "AttackRate"                "1"                                 // Speed of attack.
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    }
 
-		// 1 = guise
-		//"Ability3"					"place_mine"
-		//"Ability4"					"place_wall"
-		//"Ability5"					"place_turret"
 
-		"Ability1"					"venomancer_venomous_gale"
-		"Ability2"					"venotree_sprint"
-		"Ability3"					"tree_manapassive"
-		"Ability4"					"destroy_aoe"
-		"Ability5"					"tree_repair"
-		"Ability6"					"aoe_trees"
+    "npc_dota_hero_venomancer"
+    {
+        "override_hero"             "npc_dota_hero_venomancer"
+        "Model"                     "models/items/furion/treant/primeval_treant/primeval_treant.vmdl"
+        "ModelScale"                ".425"
+        "RingRadius"                "30"
+        "MovementTurnRate"          "0.8"                                   // Turning rate.
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"100"
-		"BountyGoldMax"				"100"
+        //"BoundsHullName"          "DOTA_HULL_SIZE_SMALL"
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
 
-		"StatusHealth"				"50"
+        "MagicalResistance"             "92"
 
-		"AbilityLayout"                         "5"
+        "MovementSpeed"             "260"
 
-		"AttributeBaseStrength"			"0"								// Base strength
-		"AttributeStrengthGain"			"0.0"								// Strength bonus per level.
-		"AttributeBaseAgility"			"0"									// Base agility
-		"AttributeAgilityGain"			"0"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"0"								// Base intelligence
-		"AttributeIntelligenceGain"		"0.0"								// Intelligence bonus per level.
+        "HasInventory"              "0"
 
-		"StatusMana"				"8000"		// Base mana.
-		"StatusManaRegen"			"0.0"			// Mana regeneration rate.
+        // 1 = guise
+        //"Ability3"                    "place_mine"
+        //"Ability4"                    "place_wall"
+        //"Ability5"                    "place_turret"
 
-		"ArmorPhysical"					"-5"									// Physical protection.
+        "Ability1"                  "venomancer_venomous_gale"
+        "Ability2"                  "venotree_sprint"
+        "Ability3"                  "tree_manapassive"
+        "Ability4"                  "destroy_aoe"
+        "Ability5"                  "tree_repair"
+        "Ability6"                  "aoe_trees"
 
-		"AttackDamageMin"			"0"									// Damage range min.
-		"AttackDamageMax"			"0"									// Damage range max.
-		"AttackRate"				"1"									// Speed of attack.
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"	
-	}
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "100"
+        "BountyGoldMax"             "100"
 
+        "StatusHealth"              "50"
 
-	"npc_dota_hero_riki"
-	{
-		"override_hero"				"npc_dota_hero_riki"
-		"Model"						"models/items/furion/treant/treant_cis/treant_cis.vmdl"
-		"ModelScale" 				".425"
-		"RingRadius"				"30"
-		"MovementTurnRate"			"0.8"
+        "AbilityLayout"                         "5"
 
-	    //"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
-	    "BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+        "AttributeBaseStrength"         "0"                             // Base strength
+        "AttributeStrengthGain"         "0.0"                               // Strength bonus per level.
+        "AttributeBaseAgility"          "0"                                 // Base agility
+        "AttributeAgilityGain"          "0"                                 // Agility bonus per level.
+        "AttributeBaseIntelligence"     "0"                             // Base intelligence
+        "AttributeIntelligenceGain"     "0.0"                               // Intelligence bonus per level.
 
-		"MagicalResistance"				"92"
+        "StatusMana"                "8000"      // Base mana.
+        "StatusManaRegen"           "0.0"           // Mana regeneration rate.
 
-		"MovementSpeed"				"260"
+        "ArmorPhysical"                 "-5"                                    // Physical protection.
 
-		"HasInventory"				"0"
+        "AttackDamageMin"           "0"                                 // Damage range min.
+        "AttackDamageMax"           "0"                                 // Damage range max.
+        "AttackRate"                "1"                                 // Speed of attack.
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    }
 
-		// 1 = guise
-		//"Ability3"					"place_mine"
-		//"Ability4"					"place_wall"
-		//"Ability5"					"place_turret"
 
-		"Ability1"					"rikisummon"
-		"Ability2"					"rikihide"
-		"Ability3"					"tree_manapassive"
-		"Ability4"					"destroy_aoe"
-		"Ability5"					"tree_repair"
-		"Ability6"					"aoe_trees"
+    "npc_dota_hero_riki"
+    {
+        "override_hero"             "npc_dota_hero_riki"
+        "Model"                     "models/items/furion/treant/treant_cis/treant_cis.vmdl"
+        "ModelScale"                ".425"
+        "RingRadius"                "30"
+        "MovementTurnRate"          "0.8"
 
-		"BountyXP"					"0"
-		"BountyGoldMin"				"100"
-		"BountyGoldMax"				"100"
+        //"BoundsHullName"          "DOTA_HULL_SIZE_SMALL"
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
 
-		"StatusHealth"				"50"
+        "MagicalResistance"             "92"
 
-		"AbilityLayout"                         "5"
+        "MovementSpeed"             "260"
 
-		"AttributeBaseStrength"			"0"								// Base strength
-		"AttributeStrengthGain"			"0.0"								// Strength bonus per level.
-		"AttributeBaseAgility"			"0"									// Base agility
-		"AttributeAgilityGain"			"0"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"0"								// Base intelligence
-		"AttributeIntelligenceGain"		"0.0"								// Intelligence bonus per level.
+        "HasInventory"              "0"
 
-		"StatusMana"				"8000"		// Base mana.
-		"StatusManaRegen"			"0.0"			// Mana regeneration rate.
+        // 1 = guise
+        //"Ability3"                    "place_mine"
+        //"Ability4"                    "place_wall"
+        //"Ability5"                    "place_turret"
 
-		"ArmorPhysical"					"-5"									// Physical protection.
+        "Ability1"                  "rikisummon"
+        "Ability2"                  "rikihide"
+        "Ability3"                  "tree_manapassive"
+        "Ability4"                  "destroy_aoe"
+        "Ability5"                  "tree_repair"
+        "Ability6"                  "aoe_trees"
 
-		"AttackDamageMin"			"0"									// Damage range min.
-		"AttackDamageMax"			"0"									// Damage range max.
-		"AttackRate"				"1"									// Speed of attack.
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"	
-	}
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "100"
+        "BountyGoldMax"             "100"
+
+        "StatusHealth"              "50"
+
+        "AbilityLayout"                         "5"
+
+        "AttributeBaseStrength"         "0"                             // Base strength
+        "AttributeStrengthGain"         "0.0"                               // Strength bonus per level.
+        "AttributeBaseAgility"          "0"                                 // Base agility
+        "AttributeAgilityGain"          "0"                                 // Agility bonus per level.
+        "AttributeBaseIntelligence"     "0"                             // Base intelligence
+        "AttributeIntelligenceGain"     "0.0"                               // Intelligence bonus per level.
+
+        "StatusMana"                "8000"      // Base mana.
+        "StatusManaRegen"           "0.0"           // Mana regeneration rate.
+
+        "ArmorPhysical"                 "-5"                                    // Physical protection.
+
+        "AttackDamageMin"           "0"                                 // Damage range min.
+        "AttackDamageMax"           "0"                                 // Damage range max.
+        "AttackRate"                "1"                                 // Speed of attack.
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    }
 
 
 }

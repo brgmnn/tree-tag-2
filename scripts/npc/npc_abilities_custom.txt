@@ -877,7 +877,7 @@
 
 
 
-	"aoe_trees"
+    "aoe_trees"
     {
         "BaseClass" "ability_datadriven"
         "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
@@ -885,49 +885,49 @@
         "AbilityTextureName" "medusa_split_shot"
         "AbilityCastRange" "200"
         "AbilityCastPoint" "0.0"
-		"MaxLevel"						"1"
+        "MaxLevel"                      "1"
 
         "AOERadius" "100"
 
 
-		"OnUpgrade"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName" "treerape"
-				"Target" "CASTER"
-			}
-		}
-		"OnOwnerDied"
-		{
+        "OnUpgrade"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName" "treerape"
+                "Target" "CASTER"
+            }
+        }
+        "OnOwnerDied"
+        {
             "RemoveModifier"
             {
                 "Target" "CASTER"
                 "ModifierName" "treerape"
             }
         }
-		"Modifiers"
-		{
-			"treerape"
-			{
-				"IsDebuff" "0"
-				"IsPurgable" "0"
-				"ThinkInterval" "0.15"
+        "Modifiers"
+        {
+            "treerape"
+            {
+                "IsDebuff" "0"
+                "IsPurgable" "0"
+                "ThinkInterval" "0.15"
                 "IsHidden"        "1"
-				"OnIntervalThink"
-				{
-					"DestroyTrees"
-		            {
-		   				"Target"
-		   				{
-			   				"Center"	"TARGET"
-							"Radius"	"130"
-		   				}
-						"Radius"	"130"
-		   			}
-				}
-			}
-		}
+                "OnIntervalThink"
+                {
+                    "DestroyTrees"
+                    {
+                        "Target"
+                        {
+                            "Center"    "TARGET"
+                            "Radius"    "130"
+                        }
+                        "Radius"    "130"
+                    }
+                }
+            }
+        }
     }
 
 
@@ -1143,26 +1143,26 @@
 
 
 
-	"goldattack"
+    "goldattack"
     {
         "BaseClass" "ability_datadriven"
         "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityTextureName" "alchemist_goblins_greed"
 
-		"MaxLevel"						"1"
+        "MaxLevel"                      "1"
 
 
-		//"OnAttackLanded"
-		//"OnDealDamage"
+        //"OnAttackLanded"
+        //"OnDealDamage"
 
-		"OnUpgrade"
-		{
-			"ApplyModifier"
-			{
-				"Target" "CASTER"
-				"ModifierName" "goldattackmod"
-			}
-		}
+        "OnUpgrade"
+        {
+            "ApplyModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "goldattackmod"
+            }
+        }
         "OnOwnerDied"
         {
             //SpawnUnit
@@ -1182,23 +1182,23 @@
                 "Function"          "spawnghostdire"
             }
         }
-		"Modifiers"
-		{
-			"goldattackmod"
-			{
-				"IsDebuff"      "0"
-				"IsPurgable"    "0"
+        "Modifiers"
+        {
+            "goldattackmod"
+            {
+                "IsDebuff"      "0"
+                "IsPurgable"    "0"
                 "IsHidden"      "0"
-				"OnAttackLanded"
-				{
-					"RunScript"
-		            {
-		                "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
-		                "Function"          "goldattack"
-		            }
-				}
-			}
-		}
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "scripts/vscripts/custom_abilities.lua"
+                        "Function"          "goldattack"
+                    }
+                }
+            }
+        }
     }
 
 
@@ -3360,13 +3360,13 @@
 
 
 
-	"levelmine_3"
+    "levelmine_3"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"100"
+        "AbilityGoldCost"           "100"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -3440,13 +3440,13 @@
         }
     }
 
-	"levelmine_4"
+    "levelmine_4"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"200"
+        "AbilityGoldCost"           "200"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -3521,13 +3521,13 @@
         }
     }
 
-	"levelmine_5"
+    "levelmine_5"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"400"
+        "AbilityGoldCost"           "400"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -3601,13 +3601,13 @@
         }
     }
 
-	"levelmine_6"
+    "levelmine_6"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"800"
+        "AbilityGoldCost"           "800"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -3684,13 +3684,13 @@
         }
     }
 
-	"levelmine_7"
+    "levelmine_7"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"1600"
+        "AbilityGoldCost"           "1600"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -4023,13 +4023,13 @@
 
 
 
-	"levelwall_2"
+    "levelwall_2"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"8"
+        "AbilityGoldCost"           "8"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -4097,13 +4097,13 @@
         }
     }
 
-	"levelwall_3"
+    "levelwall_3"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"16"
+        "AbilityGoldCost"           "16"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -4171,13 +4171,13 @@
         }
     }
 
-	"levelwall_4"
+    "levelwall_4"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"32"
+        "AbilityGoldCost"           "32"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -4246,13 +4246,13 @@
         }
     }
 
-	"levelwall_5"
+    "levelwall_5"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"64"
+        "AbilityGoldCost"           "64"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -4321,13 +4321,13 @@
         }
     }
 
-	"levelwall_6"
+    "levelwall_6"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"128"
+        "AbilityGoldCost"           "128"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -4396,13 +4396,13 @@
         }
     }
 
-	"levelwall_7"
+    "levelwall_7"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"256"
+        "AbilityGoldCost"           "256"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -4471,13 +4471,13 @@
         }
     }
 
-	"levelwall_8"
+    "levelwall_8"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"512"
+        "AbilityGoldCost"           "512"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -4546,13 +4546,13 @@
         }
     }
 
-	"levelwall_9"
+    "levelwall_9"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"1024"
+        "AbilityGoldCost"           "1024"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -5339,13 +5339,13 @@
 
 
 
-	"levelturret_2"
+    "levelturret_2"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"24"
+        "AbilityGoldCost"           "24"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -5413,13 +5413,13 @@
             }
         }
     }
-	"levelturret_3"
+    "levelturret_3"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"32"
+        "AbilityGoldCost"           "32"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -5487,13 +5487,13 @@
             }
         }
     }
-	"levelturret_4"
+    "levelturret_4"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"64"
+        "AbilityGoldCost"           "64"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -5561,13 +5561,13 @@
             }
         }
     }
-	"levelturret_5"
+    "levelturret_5"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"128"
+        "AbilityGoldCost"           "128"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -5635,13 +5635,13 @@
             }
         }
     }
-	"levelturret_6"
+    "levelturret_6"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"256"
+        "AbilityGoldCost"           "256"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -5709,13 +5709,13 @@
             }
         }
     }
-	"levelturret_7"
+    "levelturret_7"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"512"
+        "AbilityGoldCost"           "512"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -5796,13 +5796,13 @@
             }
         }
     }
-	"levelturret_8"
+    "levelturret_8"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"1024"
+        "AbilityGoldCost"           "1024"
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
         "AbilityManaCost"               "32"
@@ -5880,13 +5880,13 @@
             }
         }
     }
-	"levelturret_9"
+    "levelturret_9"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"2048"
+        "AbilityGoldCost"           "2048"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -5959,13 +5959,13 @@
             }
         }
     }
-	"levelturret_10"
+    "levelturret_10"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"4096"
+        "AbilityGoldCost"           "4096"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
@@ -6038,13 +6038,13 @@
             }
         }
     }
-	"levelturret_11"
+    "levelturret_11"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"            "upicon"
         "MaxLevel"                      "1"
-		"AbilityGoldCost" 			"99999"
+        "AbilityGoldCost"           "99999"
 
         "AbilityCastPoint"              "0"
         "AbilityCooldown"               "2"
