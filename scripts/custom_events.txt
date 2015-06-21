@@ -1,35 +1,11 @@
 "CustomEvents"
 {
-	
+
 	"custom_error_show"
 	{
 		"player_ID"		"short"
 		"_error"		"string"
 	}
-    // Stat collection
-    //"stat_collection_part"
-    //{
-    //    "data"          "string"
-    //}
-
-    //"stat_collection_send"
-    //{
-    //}
-
-    // high score stuff
-    //"stat_collection_steamID" //Note this one event will power both StatsCollectionAchievments, StatsCollectionRPG aswell as StatsCollectionHighscores
-    //{
-    //    "0"             "long"
-    //    "1"             "long"
-    //    "2"             "long"
-    //    "3"             "long"
-    //    "4"             "long"
-    //    "5"             "long"
-    //    "6"             "long"
-    //    "7"             "long"
-    //    "8"             "long"
-    //    "9"             "long"
-    //}
 
 
     //"tt_mine10"  //Sends any score, flash will compare to the stored highscore and update
@@ -59,7 +35,7 @@
     //}
 
     // End Stat Collection
-	
+
 
 
 

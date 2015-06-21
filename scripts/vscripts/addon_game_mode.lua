@@ -376,7 +376,6 @@ function CTreeTagGameMode:OnThink()
 		for i=0,9 do
 		j[tostring(i)] = PlayerResource:GetSteamAccountID(i)
 		end
-		FireGameEvent("stat_collection_steamID", j)
 	end]]
 
 
