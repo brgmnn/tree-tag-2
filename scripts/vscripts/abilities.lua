@@ -1,10 +1,9 @@
--- The following three functions are necessary for building helper.
-
 function build( keys )
     local player = keys.caster:GetPlayerOwner()
     local pID = player:GetPlayerID()
 
-    -- Check if player has enough resources here. If he doesn't they just return this function.
+    -- Check if player has enough resources here. If he doesn't they just
+    -- return this function.
 
     local returnTable = BuildingHelper:AddBuilding(keys)
 
@@ -17,8 +16,7 @@ function build( keys )
         if Debug_BH then
             print("Started construction of " .. unit:GetUnitName())
         end
-        -- Unit is the building be built.
-        -- Play construction sound
+        -- Unit is the building be built.  Play construction sound
         -- FindClearSpace for the builder
         FindClearSpaceForUnit(keys.caster, keys.caster:GetAbsOrigin(), true)
         -- start the building with 0 mana.
@@ -28,14 +26,14 @@ function build( keys )
         if Debug_BH then
             print("Completed construction of " .. unit:GetUnitName())
         end
-        -- Play construction complete sound.
-        -- Give building its abilities
-        -- add the mana
+        -- Play construction complete sound. Give building its abilities add
+        -- the mana
         unit:SetMana(unit:GetMaxMana())
     end)
 
-    -- These callbacks will only fire when the state between below half health/above half health changes.
-    -- i.e. it won't unnecessarily fire multiple times.
+    -- These callbacks will only fire when the state between below half
+    -- health/above half health changes.  i.e. it won't unnecessarily fire
+    -- multiple times.
     keys:OnBelowHalfHealth(function(unit)
         if Debug_BH then
             print(unit:GetUnitName() .. " is below half health.")

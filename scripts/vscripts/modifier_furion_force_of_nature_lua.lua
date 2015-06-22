@@ -1,24 +1,20 @@
 modifier_furion_force_of_nature_lua = class({})
 
---------------------------------------------------------------------------------
 
 function modifier_furion_force_of_nature_lua:IsDebuff()
     return true
 end
 
---------------------------------------------------------------------------------
 
 function modifier_furion_force_of_nature_lua:IsHidden()
     return true
 end
 
---------------------------------------------------------------------------------
 
 function modifier_furion_force_of_nature_lua:IsPurgable()
     return false
 end
 
---------------------------------------------------------------------------------
 
 function modifier_furion_force_of_nature_lua:OnDestroy()
     if IsServer() then
@@ -26,7 +22,6 @@ function modifier_furion_force_of_nature_lua:OnDestroy()
     end
 end
 
---------------------------------------------------------------------------------
 
 function modifier_furion_force_of_nature_lua:DeclareFunctions()
     local funcs = {
@@ -36,11 +31,8 @@ function modifier_furion_force_of_nature_lua:DeclareFunctions()
     return funcs
 end
 
---------------------------------------------------------------------------------
 
 function modifier_furion_force_of_nature_lua:GetUnitLifetimeFraction( params )
     return ( ( self:GetDieTime() - GameRules:GetGameTime() ) / self:GetDuration() )
 end
 
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------

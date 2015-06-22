@@ -1,28 +1,3 @@
---[[
-
-
-
-replace fortify
-
--- http://hastebin.com/henocemifa.php    fishing for murfle
-
-
-
-
-
-
-
-]]
-
-
-
-
-
-
-Testing = false --Useful for turning off stat-collection when developing
-
-
-
 if CTreeTagGameMode == nil then
     CTreeTagGameMode = class({})
     --CTreeTagGameMode = {}
@@ -33,8 +8,6 @@ end
 
 
 function Precache( context )
-
-
     PrecacheResource("model_folder", "models/items/furion", context)
     PrecacheResource("particle_folder", "econ/items/natures_prophet", context)
 
@@ -47,17 +20,10 @@ function Precache( context )
     -- required for cosmetic shit
     PrecacheResource( "model", "models/development/invisiblebox.vmdl", context )
 
-
     -- building helper
     PrecacheResource("particle_folder", "particles/buildinghelper", context)
-
-
-
-
     PrecacheResource("model_folder", "particles/units/heroes/hero_techies", context)
     PrecacheResource("particle_folder", "particles/units/heroes/hero_techies", context)
-
-
 
     PrecacheUnitByNameSync("npc_dota_goodguys_tower1_top", context)
 
@@ -96,16 +62,9 @@ function Precache( context )
 
     PrecacheResource( "model", "models/items/furion/treant/primeval_treant/primeval_treant.vmdl", context )
     PrecacheResource( "model", "models/items/furion/treant/shroomling_treant/shroomling_treant.vmdl", context )
-
-
     PrecacheResource( "model", "models/props_structures/good_base_wall006.vmdl", context )
-
-
     PrecacheResource( "model", "models/items/furion/treant/father_treant/father_treant.vmdl", context )
     PrecacheResource( "model", "models/items/furion/treant/treant_cis/treant_cis.vmdl", context )
-
-
-
 
     PrecacheResource( "model", "models/props_rock/riveredge_rock006a.vmdl", context )
 
@@ -114,7 +73,6 @@ function Precache( context )
 
     -- riki summon spirit effect
     PrecacheResource( "particle", "particles/units/heroes/hero_brewmaster/brewmaster_primal_split_storm_trail_b.vpcf", context )
-
 
     -- timber explode effect
     PrecacheResource( "particle", "particles/econ/events/coal/coal_projectile_explosion.vpcf", context )
@@ -180,8 +138,8 @@ function Precache( context )
     PrecacheResource( "particle", "particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_trail.vpcf", context )
 
     PrecacheResource( "particle", "particles/units/heroes/hero_axe/axe_battle_hunger_b.vpcf", context )
-
 end
+
 
 -- Create the game mode when we activate
 function Activate()
@@ -189,11 +147,13 @@ function Activate()
     GameRules.AddonTemplate:InitGameMode()
 end
 
-function CTreeTagGameMode:InitGameMode()
-    print( "Tree Tag is loaded." )
-    GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 1 )
 
-    ListenToGameEvent( "entity_killed", Dynamic_Wrap( CTreeTagGameMode, 'OnEntityKilled' ), self )
+function CTreeTagGameMode:InitGameMode()
+    print("Tree Tag is loaded.")
+    GameRules:GetGameModeEntity():SetThink("OnThink", self, "GlobalThink", 1)
+
+    ListenToGameEvent("entity_killed",
+            Dynamic_Wrap(CTreeTagGameMode, 'OnEntityKilled'), self)
 
     --ListenToGameEvent('player_fullyjoined', Dynamic_Wrap(CTreeTagGameMode, 'OnPlayerLoaded'), self)
     --ListenToGameEvent("player_connect_full", Dynamic_Wrap(CTreeTagGameMode, "OnPlayerLoaded"), self)  -- THIS ONE
@@ -209,14 +169,11 @@ function CTreeTagGameMode:InitGameMode()
     GameRules:SetGoldTickTime( 60.0 )
     GameRules:SetGoldPerTick( 0 )
 
-
     GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     --GameRules:SetHeroMinimapIconSize( 400 )
     --GameRules:SetCreepMinimapIconScale( 0.7 )
     --GameRules:SetRuneMinimapIconScale( 0.7 )
-
-
 
     --GameRules:GetGameModeEntity():SetRemoveIllusionsOnDeath( true )
     --GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
@@ -236,33 +193,16 @@ function CTreeTagGameMode:InitGameMode()
 
     GameRules:SetFirstBloodActive(false)
     GameRules:SetUseBaseGoldBountyOnHeroes(true)
-
 end
+
 
 needshero = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true}
 needshero[0] = true
-
 starttime = -1
 
 
---nonstatsgame = false;
-nonstatsgame = true;
-
-
-
 function objectivereached(keys)
-    --tprint(keys);
-    --print("---------")
-
-
     print("high scores temporarily disabled")
-
-
-
-    if nonstatsgame then
-        print("Stats not recorded this game. Only 5v2 games are recorded for high scores")
-        return nil;
-    end
 
     local rad = 0;
     local dir = 0;
@@ -275,27 +215,10 @@ function objectivereached(keys)
         end
     end
 
-    if rad==5 and dir==2 then
-    else
-        nonstatsgame = true;
-        print("nonstatsgame: high score not recorded")
-        return nil;
-    end
-
 
     local pid = keys.caster:GetPlayerOwnerID();
     local objective = keys.objectivename;
-
     local newscore = GameRules:GetDOTATime(false,false);
-
-    --local newscore = 91987
-
-
-            --tt_mine10
-            --tt_turret10
-            --tt_mineandturret10
-            --tt_level5set
-
 
     if objective=="mine10" then
         print("Player "..pid.." reached "..objective.." after "..newscore.." secs");
@@ -306,7 +229,6 @@ function objectivereached(keys)
             FireGameEvent( 'tt_mineandturret10', { player_ID = pid, score = newscore } );
             print("Player "..pid.." reached mineandturret after "..newscore.." secs");
         end
-
     elseif objective=="turret10" then
         print("Player "..pid.." reached "..objective.." after "..newscore.." secs");
         FireGameEvent( 'tt_turret10', { player_ID = pid, score = newscore } );
@@ -316,13 +238,9 @@ function objectivereached(keys)
             FireGameEvent( 'tt_mineandturret10', { player_ID = pid, score = newscore } );
             print("Player "..pid.." reached mineandturret after "..newscore.." secs");
         end
-
-
     end
-
-    -- do the item check bullshit on some item acquired event for dire level5set
-
 end
+
 
 --  have players 8 and 9 been swapped to radiant?
 notswapped8 = true
@@ -331,58 +249,33 @@ notswapped8a = true
 notswapped9a = true
 
 
-
+--      OnEntityKilled()
+-- Checks killed entities and if they are a hero and on the ents side spawn a
+-- tombstone where they died so their teammates can revive them.
 function CTreeTagGameMode:OnEntityKilled( event )
     local killedUnit = EntIndexToHScript( event.entindex_killed )
 
-    if killedUnit and killedUnit:IsRealHero() and killedUnit:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-        local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
-        newItem:SetPurchaseTime( 0 )
-        newItem:SetPurchaser( killedUnit )
-        local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
-        tombstone:SetContainedItem( newItem )
-        tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
-        FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )
+    if killedUnit and
+        killedUnit:IsRealHero() and
+        killedUnit:GetTeamNumber() == DOTA_TEAM_GOODGUYS
+    then
+        local newItem = CreateItem("item_tombstone", killedUnit, killedUnit)
+        newItem:SetPurchaseTime(0)
+        newItem:SetPurchaser(killedUnit)
+        local tombstone = SpawnEntityFromTableSynchronous(
+                "dota_item_tombstone_drop", {})
+        tombstone:SetContainedItem(newItem)
+        tombstone:SetAngles(0, RandomFloat(0, 360), 0)
+        FindClearSpaceForUnit(tombstone, killedUnit:GetAbsOrigin(), true)
     end
 end
 
 
 -- Evaluate the state of the game
 function CTreeTagGameMode:OnThink()
-
-
-    --print(GameRules:GetDOTATime(false,false))
-
-
-    --[[if notswapped8a then
-        local owner = PlayerResource:GetPlayer(8);
-        if owner then
-            owner:SetTeam(2);
-            notswapped8a=false;
-        end
-    end
-    if notswapped9a then
-        local owner = PlayerResource:GetPlayer(9);
-        if owner then
-            owner:SetTeam(2);
-            notswapped9a=false;
-        end
-    end]]
-
-
-    -- temporarily disabled
-    --[[if GameRules:State_Get() >= DOTA_GAMERULES_STATE_HERO_SELECTION then
-        j = {}
-        for i=0,9 do
-        j[tostring(i)] = PlayerResource:GetSteamAccountID(i)
-        end
-    end]]
-
-
     local currentGameTime = GameRules:GetDOTATime(false,false);
 
-    for _,hero in pairs( Entities:FindAllByClassname( "npc_dota_hero_wisp")) do
-
+    for _,hero in pairs( Entities:FindAllByClassname("npc_dota_hero_wisp")) do
         if not hero:IsAlive() then
             print("pre-A");
             hero:Destroy();
@@ -394,15 +287,15 @@ function CTreeTagGameMode:OnThink()
             print("c");
         else
             --print("d");
-
             local id = hero:GetPlayerOwner():GetPlayerID()
             if id ~= -1 then
-
                 hero:SetGold(0, false)
                 if hero:GetTeamNumber() == 2 then
                     if starttime>-1 and currentGameTime >= 60 then
                         local powner = hero:GetPlayerOwner();
-                        local zxc = PlayerResource:ReplaceHeroWith(id,"npc_dota_hero_treant",15,0)
+                        local zxc = PlayerResource:ReplaceHeroWith(id,
+                                "npc_dota_hero_treant", 15, 0)
+
                         zxc:SetOwner(powner)
 
                         zxc:GetAbilityByIndex(0):SetLevel(1)    -- normal abilities 1 through 5, dont level ulti at level '1'
@@ -467,12 +360,10 @@ function CTreeTagGameMode:OnThink()
                         needshero[id] = false
                         --print("azpp: "..hero:GetTeamNumber())
                     end
-
-                --elseif id<7 then
                 elseif hero:GetTeamNumber() == 3 then
-
                     if starttime>-1 and currentGameTime >= 60 then
-                        local zxc = PlayerResource:ReplaceHeroWith(id,"npc_dota_hero_shredder",0,0)
+                        local zxc = PlayerResource:ReplaceHeroWith(id,
+                                "npc_dota_hero_shredder", 0, 0)
 
                         zxc:GetAbilityByIndex(0):SetLevel(1)    -- normal abilities exclude ulti on lvl '1',  treerape
                         zxc:GetAbilityByIndex(1):SetLevel(1)    -- gold hit
@@ -481,96 +372,39 @@ function CTreeTagGameMode:OnThink()
                         zxc:GetAbilityByIndex(4):SetLevel(1)    -- true sight
                         zxc:GetAbilityByIndex(5):SetLevel(1)    -- chakram
 
-                        --zxc:GetAbilityByIndex(4):SetLevel(1)  -- attribute bonus (ability6 on timbersav)
-
                         itz = CreateItem("item_travel_boots", zxc, zxc)
                         itz:SetPurchaseTime(itz:GetPurchaseTime()-12)
                         zxc:AddItem(itz)
-
-
 
                         itz2 = CreateItem("item_chop_tree", zxc, zxc)
                         itz2:SetPurchaseTime(itz2:GetPurchaseTime()-12)
                         zxc:AddItem(itz2)
 
-
-
-
                         zxc:SetAbilityPoints(0)
                         needshero[id] = false
                     elseif needshero[id] then
+                        hero:AddAbility("picktimber")
+                        abzx = hero:FindAbilityByName("picktimber")
+                        abzx:SetAbilityIndex(0)
+                        abzx:SetLevel(1)
+                        abzx:StartCooldown(35)
 
+                        hero:AddAbility("pickbatrider")
+                        abzx2 = hero:FindAbilityByName("pickbatrider")
+                        abzx2:SetAbilityIndex(1)
+                        abzx2:SetLevel(1)
+                        abzx2:StartCooldown(35)
 
-                        --[[if notswapped8 and id==8 then
-                            local owner = hero:GetOwner();
-                            if owner then
-                                owner:SetTeam(2);
-                                hero:SetTeam(2);
-                                notswapped8=false;
-                            end
-                            hero:AddAbility("picktree")
-                            abzx = hero:FindAbilityByName("picktree")
-                            abzx:SetAbilityIndex(0)
-                            abzx:SetLevel(1)
-                            abzx:StartCooldown(5)
-
-                            hero:AddAbility("pickfurion")
-                            abzx2 = hero:FindAbilityByName("pickfurion")
-                            abzx2:SetAbilityIndex(1)
-                            abzx2:SetLevel(1)
-                            abzx2:StartCooldown(5)
-
-                            hero:SetAbilityPoints(0)
-                            needshero[id] = false
-                        elseif notswapped9 and id==9 then
-                            local owner = hero:GetOwner();
-                            if owner then
-                                owner:SetTeam(2);
-                                hero:SetTeam(2);
-                                notswapped9=false;
-                            end
-                            hero:AddAbility("picktree")
-                            abzx = hero:FindAbilityByName("picktree")
-                            abzx:SetAbilityIndex(0)
-                            abzx:SetLevel(1)
-                            abzx:StartCooldown(5)
-
-                            hero:AddAbility("pickfurion")
-                            abzx2 = hero:FindAbilityByName("pickfurion")
-                            abzx2:SetAbilityIndex(1)
-                            abzx2:SetLevel(1)
-                            abzx2:StartCooldown(5)
-
-                            hero:SetAbilityPoints(0)
-                            needshero[id] = false
-                        else]]
-                            hero:AddAbility("picktimber")
-                            abzx = hero:FindAbilityByName("picktimber")
-                            abzx:SetAbilityIndex(0)
-                            abzx:SetLevel(1)
-                            abzx:StartCooldown(35)
-
-                            hero:AddAbility("pickbatrider")
-                            abzx2 = hero:FindAbilityByName("pickbatrider")
-                            abzx2:SetAbilityIndex(1)
-                            abzx2:SetLevel(1)
-                            abzx2:StartCooldown(35)
-
-
-                            --hero:GetAbilityByIndex(1):SetLevel(1)
-
-                            --hero:GetAbilityByIndex(1):SetHidden(true)
-                            hero:SetAbilityPoints(0)
-                            needshero[id] = false
-                            print("azpp: "..hero:GetTeamNumber())
-                        --end
+                        --hero:GetAbilityByIndex(1):SetLevel(1)
+                        --hero:GetAbilityByIndex(1):SetHidden(true)
+                        hero:SetAbilityPoints(0)
+                        needshero[id] = false
+                        print("azpp: "..hero:GetTeamNumber())
                     end
                 end
             end
-
         end
     end
-
 
 
     if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -578,23 +412,7 @@ function CTreeTagGameMode:OnThink()
             starttime = GameRules:GetGameTime()
         end
 
-        --for _,hero in pairs( Entities:FindAllByClassname( "npc_dota_hero_treant")) do
-        --    hero:AddExperience(2,false)
-        --end
-        --for _,hero in pairs( Entities:FindAllByClassname( "npc_dota_hero_shredder")) do
-        --    hero:AddExperience(2,false)
-        --end
-        --for _,hero in pairs( Entities:FindAllByClassname( "npc_dota_hero_abaddon")) do
-        --    hero:AddExperience(2,false)
-        --end
-
-
-
-        --print( "Template addon script is running." )
-
         self:_CheckForDefeat()
-
-
     elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
         return nil
     end
@@ -654,47 +472,46 @@ function CTreeTagGameMode:_CheckForDefeat()
     end
 
     --fb only end if everyone is dead or gametime = X
-    --if bAllPlayersDead or not self._entAncient or self._entAncient:GetHealth() <= 0 then
     if starttime > -1 then
         if currentGameTime >= 39 then
             if bAllPlayersDead and bHasPlayers then
                 print("Dire lose: all dead")
-                --GameRules:MakeTeamLose( DOTA_TEAM_GOODGUYS )
                 GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
                 return
             end
             if aAllPlayersDead and aHasPlayers then
                 print("Rad lose: all dead")
-                --GameRules:MakeTeamLose( DOTA_TEAM_BADGUYS )
                 GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
                 return
             end
         end
 
-
-        -- auto 2 min win for testing
-        --if GameRules:GetGameTime()-starttime >= 120 then
-        --  GameRules:MakeTeamLose( DOTA_TEAM_BADGUYS )
-        --end
-
-
         if currentGameTime >= 1159 then
             if not warnB then
-                local messageinfo = {message = "Dire, prepare to kill the World Tree!", duration = 5}
+                local messageinfo = {
+                    message = "Dire, prepare to kill the World Tree!",
+                    duration = 5
+                }
                 FireGameEvent("show_center_message",messageinfo)
                 warnB=true
             end
         end
         if currentGameTime >= 1164 then
             if not warnC then
-                local messageinfo = {message = "Radiant, prepare to heal the World Tree!", duration = 5}
+                local messageinfo = {
+                    message = "Radiant, prepare to heal the World Tree!",
+                    duration = 5
+                }
                 FireGameEvent("show_center_message",messageinfo)
                 warnC=true
             end
         end
         if currentGameTime >= 1169 then
             if not warnA then
-                local messageinfo = {message = "Tree Active in 30s!", duration = 5}
+                local messageinfo = {
+                    message = "Tree Active in 30s!",
+                    duration = 5
+                }
                 FireGameEvent("show_center_message",messageinfo)
                 warnA=true
             end

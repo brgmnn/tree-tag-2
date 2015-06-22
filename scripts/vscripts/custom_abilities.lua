@@ -3,11 +3,12 @@ require("CosmeticLib")
 
 moditem = nil
 
-function placeGhost(keys)
 
-    if(keys.caster:GetTeam()==3) then
+function placeGhost(keys)
+    if keys.caster:GetTeam()==3 then
         return nil;
     end
+
     PLACED_BUILDING_RADIUS = 45.0;
     blocking_counter = 0;
     groundclickpos = GetGroundPosition(keys.target_points[1], nil);
@@ -21,24 +22,28 @@ function placeGhost(keys)
         blocking_counter = blocking_counter + 1
     end
 
-    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos, PLACED_BUILDING_RADIUS) )  do
-        if thing:GetClassname() == "npc_dota_creep" or string.match(thing:GetClassname(),"npc_dota_hero") then
+    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos,
+        PLACED_BUILDING_RADIUS))
+    do
+        if thing:GetClassname() == "npc_dota_creep" or
+            string.match(thing:GetClassname(),"npc_dota_hero")
+        then
             blocking_counter = blocking_counter + 1
         end
     end
 
-    if( blocking_counter < 1) then
+    if blocking_counter < 1 then
     else
         keys.caster:ModifyGold(keys.AbilityGoldCost,false,0)
-        FireGameEvent( 'custom_error_show', { player_ID = keys.caster:GetPlayerOwnerID(), _error = "Cannot build there" } )
+        FireGameEvent('custom_error_show',
+                {
+                    player_ID = keys.caster:GetPlayerOwnerID(),
+                    _error = "Cannot build there"
+                })
         keys.caster:Interrupt()
         keys.caster:InterruptChannel()
         return nil
     end
-
-
-
-
 
     local player = keys.caster:GetPlayerOwner()
 
@@ -46,17 +51,12 @@ function placeGhost(keys)
         return nil
     end
 
-
     groundclickpos = GetGroundPosition(keys.target_points[1], nil)
 
     xpos = GridNav:WorldToGridPosX(groundclickpos.x)
     ypos = GridNav:WorldToGridPosY(groundclickpos.y)
-
     groundclickpos.x = GridNav:GridPosToWorldCenterX(xpos)
     groundclickpos.y = GridNav:GridPosToWorldCenterY(ypos)
-
-
-
 
     if player.modelGhostDummy ~= nil then
         player.modelGhostDummy:RemoveSelf()
@@ -65,28 +65,31 @@ function placeGhost(keys)
 
 
     local OutOfWorldVector = Vector(11000,11000,0)
+    player.modelGhostDummy = CreateUnitByName(keys.unitname, OutOfWorldVector,
+            false, nil, nil, keys.caster:GetTeam())
 
-
-    player.modelGhostDummy = CreateUnitByName(keys.unitname, OutOfWorldVector, false, nil, nil, keys.caster:GetTeam())
     local mgd = player.modelGhostDummy -- alias
     mgd.isBuildingDummy = true -- store this for later use
 
-    local modelParticle = ParticleManager:CreateParticleForPlayer("particles/buildinghelper/ghost_model.vpcf", PATTACH_ABSORIGIN, mgd, player)
+    local modelParticle = ParticleManager:CreateParticleForPlayer(
+            "particles/buildinghelper/ghost_model.vpcf", PATTACH_ABSORIGIN,
+            mgd, player)
 
     player.ghostParticle = modelParticle;
 
     if modelParticle ~= nil then
-        ParticleManager:SetParticleControlEnt(modelParticle, 1, mgd, 1, "follow_origin", mgd:GetAbsOrigin(), true)                      
-        ParticleManager:SetParticleControl(modelParticle, 3, Vector(40,0,0))   -- alpha 0-100
-        ParticleManager:SetParticleControl(modelParticle, 4, Vector(keys.unitscale,0,0))  -- scale 0-1
+        ParticleManager:SetParticleControlEnt(modelParticle, 1, mgd, 1,
+                "follow_origin", mgd:GetAbsOrigin(), true)
+
+        ParticleManager:SetParticleControl(modelParticle, 3, Vector(40, 0, 0))   -- alpha 0-100
+        ParticleManager:SetParticleControl(modelParticle, 4,
+                Vector(keys.unitscale, 0, 0))  -- scale 0-1
     end
 
     local centerX = groundclickpos.x;
     local centerY = groundclickpos.y;
     local z = groundclickpos.z;
-
     local vBuildingCenter = Vector(centerX,centerY,z)
-
 
     if modelParticle ~= nil then
         -- move model ghost particle
@@ -95,23 +98,24 @@ function placeGhost(keys)
         -- this stuff is not done yet. Recolor model green probably best
         if RECOLOR_GHOST_MODEL then
             if areaBlocked then
-                ParticleManager:SetParticleControl(modelParticle, 2, Vector(255,0,0))   
+                ParticleManager:SetParticleControl(modelParticle, 2,
+                        Vector(255, 0, 0))
             else
-                ParticleManager:SetParticleControl(modelParticle, 2, Vector(0,255,0))
+                ParticleManager:SetParticleControl(modelParticle, 2,
+                        Vector(0, 255, 0))
             end
         else
-            ParticleManager:SetParticleControl(modelParticle, 2, Vector(255,255,255)) -- Draws the ghost with the original colors
+            ParticleManager:SetParticleControl(modelParticle, 2,
+                    Vector(255, 255, 255)) -- Draws the ghost with the original colors
         end
     end
-
-
 end
+
 
 function removeGhost(keys)
     local player = keys.caster:GetPlayerOwner()
 
     if player ~= nil then
-
         if player.ghostParticle ~= nil then
             ParticleManager:DestroyParticle(player.ghostParticle, true)
             player.ghostParticle = nil
@@ -120,7 +124,6 @@ function removeGhost(keys)
             player.modelGhostDummy:RemoveSelf()
             player.modelGhostDummy = nil
         end
-    
     end
 end
 
@@ -131,9 +134,7 @@ function placeBuilding(keys)
     end
 
     PLACED_BUILDING_RADIUS = 45.0;
-
     blocking_counter = 0
-
     groundclickpos = GetGroundPosition(keys.target_points[1], nil)
 
     xpos = GridNav:WorldToGridPosX(groundclickpos.x)
@@ -148,24 +149,30 @@ function placeBuilding(keys)
         blocking_counter = blocking_counter + 1
     end
 
-    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos, PLACED_BUILDING_RADIUS) )  do
-        if thing:GetClassname() == "npc_dota_creep" or string.match(thing:GetClassname(),"npc_dota_hero") then
+    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos,
+        PLACED_BUILDING_RADIUS))
+    do
+        if thing:GetClassname() == "npc_dota_creep" or
+            string.match(thing:GetClassname(),"npc_dota_hero")
+        then
             blocking_counter = blocking_counter + 1
         end
     end
 
     if( blocking_counter < 1) then
 
-        --tower = CreateUnitByName("npc_treetag_building_mine_1", groundclickpos, false, keys.caster, keys.caster, keys.caster:GetPlayerOwner():GetTeam() ) 
+        --tower = CreateUnitByName("npc_treetag_building_mine_1", groundclickpos, false, keys.caster, keys.caster, keys.caster:GetPlayerOwner():GetTeam() )
 
-        --tower = CreateUnitByName("npc_treetag_building_mine_1", groundclickpos, false, nil, nil, keys.caster:GetTeam() ) 
+        --tower = CreateUnitByName("npc_treetag_building_mine_1", groundclickpos, false, nil, nil, keys.caster:GetTeam() )
         --tower:SetContext("tagtype", "npc_treetag_building_mine", 0)
         --tower:SetContext("tagtypelevel", "1", 0)
         --tower:SetAngles(0.0,90.0,0.0)
         --tower:SetOwner(keys.caster:GetPlayerOwner():GetAssignedHero());
 
-        tower = CreateUnitByName("npc_treetag_building_mine_1", groundclickpos, false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-        
+        tower = CreateUnitByName("npc_treetag_building_mine_1", groundclickpos,
+                false, keys.caster, keys.caster:GetOwner(),
+                keys.caster:GetTeamNumber())
+
         if tower ~= nil then
             tower:SetContext("tagtype", "npc_treetag_building_mine", 0)
             tower:SetContext("tagtypelevel", "1", 0)
@@ -179,36 +186,43 @@ function placeBuilding(keys)
         keys.caster:GetItemInSlot(0):SetActivated(false)
     else
         keys.caster:ModifyGold(keys.AbilityGoldCost,false,0)
-        FireGameEvent( 'custom_error_show', { player_ID = keys.caster:GetPlayerOwnerID(), _error = "Cannot build there" } )
+        FireGameEvent('custom_error_show',
+                {
+                    player_ID = keys.caster:GetPlayerOwnerID(),
+                    _error = "Cannot build there"
+                })
         keys.caster:GetItemInSlot(0):StartCooldown(0.5)
     end
 end
 
+
 function makeuncontrollable(unit)
     for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-        if PlayerResource:IsValidPlayer(nPlayerID) then 
+        if PlayerResource:IsValidPlayer(nPlayerID) then
             unit:SetControllableByPlayer(nPlayerID, true);
         end
     end
 end
 
+
 function spawnghost(keys)
     print("spawning ghost");
     if keys.caster:GetClassname() == "npc_dota_hero_furion" then
-        --helper = CreateUnitByName("npc_treetag_radiant_ghost_furion", keys.caster:GetAbsOrigin(), false, keys.caster, keys.caster,keys.caster:GetTeam() ) 
+        helper = CreateUnitByName("npc_treetag_radiant_ghost_furion",
+                keys.caster:GetAbsOrigin(), false, keys.caster,
+                keys.caster:GetOwner(), keys.caster:GetTeamNumber())
 
-
-        helper = CreateUnitByName("npc_treetag_radiant_ghost_furion", keys.caster:GetAbsOrigin(), false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-        
         if helper ~= nil then
             helper:SetAngles(0.0,90.0,0.0)
             helper:SetControllableByPlayer(keys.caster:GetPlayerID(), true);
             helper:SetOwner(keys.caster:GetPlayerOwner():GetAssignedHero());
             learnabilities(helper)
         end
-    else 
-        helper = CreateUnitByName("npc_treetag_radiant_ghost", keys.caster:GetAbsOrigin(), false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-        
+    else
+        helper = CreateUnitByName("npc_treetag_radiant_ghost",
+                keys.caster:GetAbsOrigin(), false, keys.caster,
+                keys.caster:GetOwner(), keys.caster:GetTeamNumber())
+
         if helper ~= nil then
             helper:SetAngles(0.0,90.0,0.0)
             helper:SetControllableByPlayer(keys.caster:GetPlayerID(), true);
@@ -218,10 +232,13 @@ function spawnghost(keys)
     end
 end
 
+
 function spawnghostdire(keys)
     print("spawning ghost");
-    helper = CreateUnitByName("npc_treetag_dire_ghost", keys.caster:GetAbsOrigin(), false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-    
+    helper = CreateUnitByName("npc_treetag_dire_ghost",
+            keys.caster:GetAbsOrigin(), false, keys.caster,
+            keys.caster:GetOwner(), keys.caster:GetTeamNumber())
+
     if helper ~= nil then
         helper:SetAngles(0.0,90.0,0.0)
         helper:SetControllableByPlayer(keys.caster:GetPlayerID(), true);
@@ -230,18 +247,15 @@ function spawnghostdire(keys)
     end
 end
 
+
 function placeWall(keys)
-    if(keys.caster:GetTeam()==3) then
+    if keys.caster:GetTeam()==3 then
         return nil;
     end
-    --PLACED_BUILDING_RADIUS = 70.0;
+
     PLACED_BUILDING_RADIUS = 45.0;
-
     blocking_counter = 0
-
     groundclickpos = GetGroundPosition(keys.target_points[1], nil)
-
-    --print("LALALALA  yes: " .. groundclickpos.x .. "," .. groundclickpos.y)
 
     xpos = GridNav:WorldToGridPosX(groundclickpos.x)
     ypos = GridNav:WorldToGridPosY(groundclickpos.y)
@@ -261,14 +275,21 @@ function placeWall(keys)
     end
 
 
-    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos, PLACED_BUILDING_RADIUS) )  do
-        if thing:GetClassname() == "npc_dota_creep" or string.match(thing:GetClassname(),"npc_dota_hero") then
+    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos,
+        PLACED_BUILDING_RADIUS))
+    do
+        if thing:GetClassname() == "npc_dota_creep" or
+            string.match(thing:GetClassname(),"npc_dota_hero")
+        then
             blocking_counter = blocking_counter + 1
         end
     end
-    if( blocking_counter < 1) then
-        tower = CreateUnitByName("npc_treetag_building_wall_1", groundclickpos, false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-        
+
+    if blocking_counter < 1 then
+        tower = CreateUnitByName("npc_treetag_building_wall_1",
+                groundclickpos, false, keys.caster, keys.caster:GetOwner(),
+                keys.caster:GetTeamNumber())
+
         print("AA: "..keys.caster:GetPlayerID())
 
         if tower ~= nil then
@@ -278,20 +299,16 @@ function placeWall(keys)
             tower:SetControllableByPlayer(keys.caster:GetPlayerID(), true);
             learnabilities(tower)
         end
-
-
-        --treething = CreateUnitByName("npc_treetag_faggot", groundclickpos, false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-        
-        --if treething ~= nil then
-        --    treething:SetOwner(keys.caster:GetPlayerOwner():GetAssignedHero());
-        --    treething:SetControllableByPlayer(keys.caster:GetPlayerID(), true);
-        --end
-
     else
         keys.caster:ModifyGold(keys.AbilityGoldCost,false,0)
-        FireGameEvent( 'custom_error_show', { player_ID = keys.caster:GetPlayerOwnerID(), _error = "Cannot build there" } )
+        FireGameEvent('custom_error_show',
+                {
+                    player_ID = keys.caster:GetPlayerOwnerID(),
+                    _error = "Cannot build there"
+                })
     end
 end
+
 
 function replaceunit(keys)
     local unitclassname = keys.UnitName;
@@ -304,7 +321,8 @@ function replaceunit(keys)
 
     keys.caster:Destroy()
 
-    local newunit = CreateUnitByName(unitclassname, pos, false, ahero, uowner, teamnum ) 
+    local newunit = CreateUnitByName(unitclassname, pos, false, ahero, uowner,
+            teamnum)
 
     if newunit ~= nil then
         newunit:SetOwner(ahero);
@@ -312,6 +330,7 @@ function replaceunit(keys)
         learnabilities(newunit)
     end
 end
+
 
 function learnyourfuckingspells(keys)
     tprint(keys)
@@ -324,6 +343,7 @@ function learnyourfuckingspells(keys)
     end
 end
 
+
 function learnabilities(unit)
     for aaaai=0, unit:GetAbilityCount()-1 do
         local aab = unit:GetAbilityByIndex(aaaai)
@@ -333,8 +353,9 @@ function learnabilities(unit)
     end
 end
 
+
 function placeTurret(keys)
-    if(keys.caster:GetTeam()==3) then
+    if keys.caster:GetTeam() == 3 then
         return nil;
     end
     PLACED_BUILDING_RADIUS = 45.0;
@@ -352,28 +373,25 @@ function placeTurret(keys)
 
 
     if GridNav:IsTraversable(groundclickpos) then
-
     else
         blocking_counter = blocking_counter + 1
     end
 
-
-    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos, PLACED_BUILDING_RADIUS) )  do
-        if thing:GetClassname() == "npc_dota_creep" or string.match(thing:GetClassname(),"npc_dota_hero") then
+    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos,
+        PLACED_BUILDING_RADIUS))
+    do
+        if thing:GetClassname() == "npc_dota_creep" or
+            string.match(thing:GetClassname(),"npc_dota_hero")
+        then
             blocking_counter = blocking_counter + 1
         end
     end
-    if( blocking_counter < 1) then
-        --tower = CreateUnitByName("npc_treetag_building_turret_1", groundclickpos, false, nil, nil, keys.caster:GetTeam() ) 
-        
-        --tower:SetContext("tagtype", "npc_treetag_building_turret", 0)
-        --tower:SetContext("tagtypelevel", "1", 0)
-        --tower:SetAngles(0.0,90.0,0.0)
-        --tower:SetOwner(keys.caster:GetPlayerOwner():GetAssignedHero());
-        --tower:SetControllableByPlayer(keys.caster:GetPlayerOwner():GetPlayerID(), true);
 
-        tower = CreateUnitByName("npc_treetag_building_turret_1", groundclickpos, false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-        
+    if blocking_counter < 1 then
+        tower = CreateUnitByName("npc_treetag_building_turret_1",
+                groundclickpos, false, keys.caster, keys.caster:GetOwner(),
+                keys.caster:GetTeamNumber())
+
         if tower ~= nil then
             tower:SetContext("tagtype", "npc_treetag_building_turret", 0)
             tower:SetContext("tagtypelevel", "1", 0)
@@ -383,16 +401,21 @@ function placeTurret(keys)
         end
     else
         keys.caster:ModifyGold(keys.AbilityGoldCost,false,0)
-        FireGameEvent( 'custom_error_show', { player_ID = keys.caster:GetPlayerOwnerID(), _error = "Cannot build there" } )
+        FireGameEvent('custom_error_show',
+                {
+                    player_ID = keys.caster:GetPlayerOwnerID(),
+                    _error = "Cannot build there"
+                })
     end
 end
 
+
 function placewell(keys)
-    if(keys.caster:GetTeam()==3) then
+    if keys.caster:GetTeam() == 3 then
         return nil;
     end
-    PLACED_BUILDING_RADIUS = 45.0;
 
+    PLACED_BUILDING_RADIUS = 45.0;
     blocking_counter = 0
     attempt_place_location = keys.target_points[1]
 
@@ -400,7 +423,6 @@ function placewell(keys)
 
     xpos = GridNav:WorldToGridPosX(groundclickpos.x)
     ypos = GridNav:WorldToGridPosY(groundclickpos.y)
-
     groundclickpos.x = GridNav:GridPosToWorldCenterX(xpos)
     groundclickpos.y = GridNav:GridPosToWorldCenterY(ypos)
 
@@ -411,23 +433,21 @@ function placewell(keys)
     end
 
 
-    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos, PLACED_BUILDING_RADIUS) )  do
-        if thing:GetClassname() == "npc_dota_creep" or string.match(thing:GetClassname(),"npc_dota_hero") then
+    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos,
+        PLACED_BUILDING_RADIUS))
+    do
+        if thing:GetClassname() == "npc_dota_creep" or
+            string.match(thing:GetClassname(),"npc_dota_hero")
+        then
             blocking_counter = blocking_counter + 1
         end
     end
     if( blocking_counter < 1) then
-        --tower = CreateUnitByName("npc_treetag_building_well_1", groundclickpos, false, nil, nil, keys.caster:GetTeam() ) 
-        
-        --tower:SetContext("tagtype", "npc_treetag_building_well", 0)
-        --tower:SetContext("tagtypelevel", "1", 0)
-        --tower:SetAngles(0.0,90.0,0.0)
-        --tower:SetOwner(keys.caster:GetPlayerOwner():GetAssignedHero());
-        --tower:SetControllableByPlayer(keys.caster:GetPlayerOwner():GetPlayerID(), true);
 
+        tower = CreateUnitByName("npc_treetag_building_well_1",
+                groundclickpos, false, keys.caster, keys.caster:GetOwner(),
+                keys.caster:GetTeamNumber() )
 
-        tower = CreateUnitByName("npc_treetag_building_well_1", groundclickpos, false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-        
         if tower ~= nil then
             tower:SetContext("tagtype", "npc_treetag_building_well", 0)
             tower:SetContext("tagtypelevel", "1", 0)
@@ -438,25 +458,28 @@ function placewell(keys)
         end
     else
         keys.caster:ModifyGold(keys.AbilityGoldCost,false,0)
-        FireGameEvent( 'custom_error_show', { player_ID = keys.caster:GetPlayerOwnerID(), _error = "Cannot build there" } )
+        FireGameEvent( 'custom_error_show',
+                {
+                    player_ID = keys.caster:GetPlayerOwnerID(),
+                    _error = "Cannot build there"
+                })
     end
 end
-
-
 
 
 function placeTree(keys)
     if keys.caster:HasModifier("ManyTrees") then
     else
-        keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "ManyTrees", {})
+        keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster,
+                "ManyTrees", {})
         return nil;
     end
 
-    if(keys.caster:GetTeam()==3) then
+    if keys.caster:GetTeam()==3 then
         return nil;
     end
+
     PLACED_BUILDING_RADIUS = 45.0;
-
     blocking_counter = 0
     attempt_place_location = keys.target_points[1]
 
@@ -475,23 +498,16 @@ function placeTree(keys)
     end
 
 
-    --if GridNav:IsNearbyTree(groundclickpos, 65, false) then
-    --    blocking_counter = blocking_counter + 1
-    --end
-
-
-
-    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos, PLACED_BUILDING_RADIUS) )  do
-        if thing:GetClassname() == "npc_dota_creep" or string.match(thing:GetClassname(),"npc_dota_hero") then
+    for _,thing in pairs(Entities:FindAllInSphere(groundclickpos,
+        PLACED_BUILDING_RADIUS))
+    do
+        if thing:GetClassname() == "npc_dota_creep" or
+            string.match(thing:GetClassname(),"npc_dota_hero")
+        then
             blocking_counter = blocking_counter + 1
         end
     end
     if( blocking_counter < 1) then
-        --newtree = CreateUnitByName("npc_treetag_blocktree", groundclickpos, false, keys.caster, keys.caster,keys.caster:GetPlayerOwner():GetTeam() ) 
-        --newtree:SetContext("tagtype", "npc_treetag_building_turret", 0)
-        --newtree:SetAngles(0.0,90.0,0.0)
-        --newtree:SetOwner(keys.caster);
-        --newtree:SetControllableByPlayer(keys.caster:GetPlayerID(), false);
     else
         keys.caster:Interrupt()
         keys.caster:InterruptChannel()
@@ -1011,7 +1027,7 @@ function recastcollectmana(keys)
             end
         end
     end
-    
+
 end
 
 function emptymana(keys)
@@ -1055,15 +1071,15 @@ function spiritthink(keys)
             --if (thing:GetUnitName() == "npc_treetag_building_well_1") then
             if string.find(thing:GetUnitName(), "npc_treetag_building_well") then
                 keys.caster:RemoveModifierByName(keys.Buff) -- remove spirit from hero
-                --spiritus = CreateUnitByName("npc_treetag_spirit", thing:GetOrigin(), false, nil, nil,keys.caster:GetTeam() ) 
-        
+                --spiritus = CreateUnitByName("npc_treetag_spirit", thing:GetOrigin(), false, nil, nil,keys.caster:GetTeam() )
+
                 --spiritus:SetOwner(keys.caster:GetPlayerOwner():GetAssignedHero())
                 --spiritus:SetControllableByPlayer(keys.caster:GetPlayerOwner():GetAssignedHero():GetPlayerID(), true)
 
 
 
-                spiritus = CreateUnitByName("npc_treetag_spirit", thing:GetOrigin(), false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() ) 
-                
+                spiritus = CreateUnitByName("npc_treetag_spirit", thing:GetOrigin(), false, keys.caster, keys.caster:GetOwner(), keys.caster:GetTeamNumber() )
+
                 if spiritus ~= nil then
                     spiritus:SetControllableByPlayer(keys.caster:GetPlayerID(), true);
                     spiritus:SetOwner(keys.caster:GetPlayerOwner():GetAssignedHero());
@@ -1123,7 +1139,7 @@ function choptree(keys)
             log_item = CreateItem( "item_apply_logs", keys.caster, keys.caster )
         end
 
-        
+
         log_item:ApplyDataDrivenModifier(keys.caster, keys.caster, "holding_log", {duration=240})
 
 
@@ -1172,13 +1188,13 @@ end
 
 function givespirit(keys)
 
-    --spiritus = CreateUnitByName("npc_treetag_spirit", keys.target:GetOrigin(), false, nil, nil, keys.target:GetTeam() ) 
-        
+    --spiritus = CreateUnitByName("npc_treetag_spirit", keys.target:GetOrigin(), false, nil, nil, keys.target:GetTeam() )
+
     --spiritus:SetOwner(keys.target:GetPlayerOwner():GetAssignedHero())
     --spiritus:SetControllableByPlayer(keys.target:GetPlayerOwner():GetAssignedHero():GetPlayerID(), true)
 
-    spiritus = CreateUnitByName("npc_treetag_spirit", keys.target:GetOrigin(), false, keys.target, keys.target:GetOwner(), keys.target:GetTeamNumber() ) 
-    
+    spiritus = CreateUnitByName("npc_treetag_spirit", keys.target:GetOrigin(), false, keys.target, keys.target:GetOwner(), keys.target:GetTeamNumber() )
+
     if spiritus ~= nil then
         spiritus:SetControllableByPlayer(keys.target:GetPlayerID(), true);
         spiritus:SetOwner(keys.target:GetPlayerOwner():GetAssignedHero());
@@ -1232,7 +1248,7 @@ function eatspirit(keys)
     end
     --tprint(keys)
 end
- 
+
 function stopiffull(keys)
     -- DISABLED BECAUSE AUTO HEAL TARGET SWITCHING IS FUCKING OP BRUV
 
@@ -1586,7 +1602,7 @@ function picktimber(keys)
     itz2 = CreateItem("item_chop_tree", zxc, zxc)
     itz2:SetPurchaseTime(itz2:GetPurchaseTime()-12)
     zxc:AddItem(itz2)
-    
+
 
     zxc:SetAbilityPoints(0)
     --needshero[id] = false
@@ -1624,9 +1640,9 @@ function goldattack(keys)
     elseif armor<0 then
         armormod = 1+((0.06 * (0-armor)) / (1 + 0.06 * (0-armor)));
     end
-    
+
     local gold = math.floor(  armormod * keys.attacker:GetAverageTrueAttackDamage()  )
-    
+
 
     PopupNumbers(keys.caster, "gold", Vector(255, 200, 33), 1.0, gold, nil, nil)
 
@@ -1682,7 +1698,7 @@ function interruptifnotech(keys)
 
         FireGameEvent( 'custom_error_show', { player_ID = keys.caster:GetPlayerOwnerID(), _error = "Not enough mana on hero" } )
         StartSoundEvent("treant_treant_nomana_01", keys.caster:GetPlayerOwner():GetAssignedHero())
-        
+
         --print("nomana")
     else
         keys.caster:GetPlayerOwner():GetAssignedHero():SpendMana(manaprice, nil)
@@ -1825,3 +1841,4 @@ function tprint (tbl, indent)
         print(formatting)
     end
 end
+
