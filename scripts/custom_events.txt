@@ -1,47 +1,8 @@
 "CustomEvents"
 {
-
-	"custom_error_show"
-	{
-		"player_ID"		"short"
-		"_error"		"string"
-	}
-
-
-    //"tt_mine10"  //Sends any score, flash will compare to the stored highscore and update
-    //{
-    //    "player_ID"     "short"
-    //    "score"         "long"
-    //}
-
-    //"tt_turret10"  //Sends any score, flash will compare to the stored highscore and update
-    //{
-    //    "player_ID"     "short"
-    //    "score"         "long"
-    //}
-
-
-    //"tt_mineandturret10"  //Sends any score, flash will compare to the stored highscore and update
-    //{
-    //    "player_ID"     "short"
-    //    "score"         "long"
-    //}
-
-
-    //"tt_level5set"  //Sends any score, flash will compare to the stored highscore and update
-    //{
-    //    "player_ID"     "short"
-    //    "score"         "long"
-    //}
-
-    // End Stat Collection
-
-
-
-
-
-
-
-
-
+    "custom_error_show"
+    {
+        "player_ID"     "short"
+        "_error"        "string"
+    }
 }
